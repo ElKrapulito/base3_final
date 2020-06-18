@@ -5,7 +5,8 @@ CREATE TABLE dim_usuario(
     id_usuario_database INT,
     username TEXT,
     firstname TEXT,
-    lastname TEXT
+    lastname TEXT,
+    city TEXT
 );
 
 
@@ -48,7 +49,6 @@ CREATE TABLE hecho_entrega_asignatura(
     id_fecha_de_entrega INT,
     id_fecha_cierre INT,
     id_fecha_subida INT, -- usar timemodified?
-    nota INT,
     hecho_entrega INT,
     FOREIGN KEY (id_alumno) REFERENCES dim_usuario(id_usuario),
     FOREIGN KEY (id_profesor) REFERENCES dim_usuario(id_usuario),
@@ -58,5 +58,3 @@ CREATE TABLE hecho_entrega_asignatura(
     FOREIGN KEY (id_fecha_cierre) REFERENCES dim_fecha(id_fecha),
     FOREIGN KEY (id_fecha_subida) REFERENCES dim_fecha(id_fecha)
 );
-
-
