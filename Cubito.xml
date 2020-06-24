@@ -1,0 +1,84 @@
+<Schema name="New Schema1">
+  <Cube name="Hecho_entrega" visible="true" cache="true" enabled="true">
+    <Table name="hecho_entrega_asignatura" schema="public">
+    </Table>
+    <Dimension type="StandardDimension" visible="true" foreignKey="id_alumno" highCardinality="false" name="Usuarios">
+      <Hierarchy name="Alumno" visible="true" hasAll="true" primaryKey="id_usuario">
+        <Table name="dim_usuario" schema="public">
+        </Table>
+        <Level name="Nombre" visible="true" column="firstname" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+        <Level name="Apellido" visible="true" column="lastname" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+        <Level name="Ciudad" visible="true" column="city" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" foreignKey="id_curso" highCardinality="false" name="Cursos">
+      <Hierarchy name="Curso" visible="true" hasAll="true" primaryKey="id_curso">
+        <Table name="dim_curso" schema="public">
+        </Table>
+        <Level name="Curso" visible="true" column="fullname" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+        <Level name="Categoria" visible="true" column="category" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" foreignKey="id_asignatura" highCardinality="false" name="Asignaturas">
+      <Hierarchy name="Asignatura" visible="true" hasAll="true" primaryKey="id_asignatura">
+        <Table name="dim_asignatura" schema="public">
+        </Table>
+        <Level name="Nombre" visible="true" column="titulo" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+        <Level name="Nota" visible="true" column="grade" type="Integer" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="TimeDimension" visible="true" foreignKey="id_fecha_de_entrega" highCardinality="false" name="Tiempo">
+      <Hierarchy name="Fecha de entrega" visible="true" hasAll="true" primaryKey="id_fecha">
+        <Table name="dim_fecha" schema="public">
+        </Table>
+        <Level name="A&#241;o" visible="true" column="anio" type="Time" uniqueMembers="false" levelType="TimeYears" hideMemberIf="Never">
+        </Level>
+        <Level name="Mes" visible="true" column="mes" type="Time" uniqueMembers="false" levelType="TimeMonths" hideMemberIf="Never">
+        </Level>
+        <Level name="Dia" visible="true" column="dia" type="Time" uniqueMembers="false" levelType="TimeDays" hideMemberIf="Never">
+        </Level>
+        <Level name="Hora" visible="true" column="hora" type="Time" uniqueMembers="false" levelType="TimeHours" hideMemberIf="Never">
+        </Level>
+        <Level name="Minuto" visible="true" column="minuto" type="Time" uniqueMembers="false" levelType="TimeMinutes" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+      <Hierarchy name="Fecha de cierre" visible="true" hasAll="true" primaryKey="id_fecha">
+        <Table name="dim_fecha" schema="public">
+        </Table>
+        <Level name="A&#241;o" visible="true" column="anio" type="Time" uniqueMembers="false" levelType="TimeYears" hideMemberIf="Never">
+        </Level>
+        <Level name="Mes" visible="true" column="mes" type="Time" uniqueMembers="false" levelType="TimeMonths" hideMemberIf="Never">
+        </Level>
+        <Level name="Dia" visible="true" column="dia" type="Time" uniqueMembers="false" levelType="TimeDays" hideMemberIf="Never">
+        </Level>
+        <Level name="Hora" visible="true" column="hora" type="Time" uniqueMembers="false" levelType="TimeHours" hideMemberIf="Never">
+        </Level>
+        <Level name="Minuto" visible="true" column="minuto" type="Time" uniqueMembers="false" levelType="TimeMinutes" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+      <Hierarchy name="Fecha de subida" visible="true" hasAll="true" primaryKey="id_fecha">
+        <Table name="dim_fecha" schema="public">
+        </Table>
+        <Level name="A&#241;o" visible="true" column="anio" type="Time" uniqueMembers="false" levelType="TimeYears" hideMemberIf="Never">
+        </Level>
+        <Level name="Mes" visible="true" column="mes" type="Time" uniqueMembers="false" levelType="TimeMonths" hideMemberIf="Never">
+        </Level>
+        <Level name="Dia" visible="true" column="dia" type="Time" uniqueMembers="false" levelType="TimeDays" hideMemberIf="Never">
+        </Level>
+        <Level name="Hora" visible="true" column="hora" type="Time" uniqueMembers="false" levelType="TimeDays" hideMemberIf="Never">
+        </Level>
+        <Level name="Minuto" visible="true" column="minuto" type="Time" uniqueMembers="false" levelType="TimeMinutes" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Measure name="Entrega" column="hecho_entrega" aggregator="sum" visible="true">
+    </Measure>
+  </Cube>
+</Schema>
