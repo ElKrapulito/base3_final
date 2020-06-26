@@ -582,18 +582,8 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Select values 4</from>
-      <to>fecha cut 2</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>Select values 5</from>
       <to>fecha cut 3</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Select values 6</from>
-      <to>Add constants</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -607,7 +597,22 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
+      <from>fecha cut 2</from>
+      <to>Select values 8</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>fecha cut 3</from>
+      <to>Select values 9</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
       <from>Select values 7</from>
+      <to>Modified JavaScript value</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Modified JavaScript value</from>
       <to>look_up_fecha_de_entrega</to>
       <enabled>Y</enabled>
     </hop>
@@ -617,18 +622,33 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
+      <from>Select values 4</from>
+      <to>fecha cut 2</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Select values 8</from>
+      <to>Modified JavaScript value 2</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Modified JavaScript value 2</from>
+      <to>look_up_fecha_cierre</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
       <from>look_up_fecha_cierre</from>
       <to>Select values 5</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>fecha cut 2</from>
-      <to>Select values 8</to>
+      <from>Select values 9</from>
+      <to>Modified JavaScript value 3</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Select values 8</from>
-      <to>look_up_fecha_cierre</to>
+      <from>Modified JavaScript value 3</from>
+      <to>look_up_fecha_subida</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -637,13 +657,8 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>fecha cut 3</from>
-      <to>Select values 9</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Select values 9</from>
-      <to>look_up_fecha_subida</to>
+      <from>Select values 6</from>
+      <to>Add constants</to>
       <enabled>Y</enabled>
     </hop>
   </order>
@@ -681,8 +696,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>608</xloc>
-      <yloc>320</yloc>
+      <xloc>192</xloc>
+      <yloc>336</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -700,22 +715,39 @@
     <fields>
       <field>
         <name>curso</name>
+        <rename/>
       </field>
       <field>
         <name>asignatura</name>
+        <rename/>
       </field>
       <field>
         <name>fecha_de_entrega</name>
+        <rename/>
       </field>
       <field>
         <name>fecha_cierre</name>
+        <rename/>
       </field>
       <field>
         <name>fecha_subida</name>
+        <rename/>
       </field>
       <field>
         <name>id_usuario</name>
         <rename>id_alumno</rename>
+      </field>
+      <field>
+        <name>dow_fecha_de_entrega</name>
+        <rename/>
+      </field>
+      <field>
+        <name>dow_fecha_cierre</name>
+        <rename/>
+      </field>
+      <field>
+        <name>dow_fecha_subida</name>
+        <rename/>
       </field>
       <select_unspecified>N</select_unspecified>
     </fields>
@@ -728,7 +760,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>304</xloc>
+      <xloc>288</xloc>
       <yloc>224</yloc>
       <draw>Y</draw>
     </GUI>
@@ -747,21 +779,39 @@
     <fields>
       <field>
         <name>asignatura</name>
+        <rename/>
       </field>
       <field>
         <name>fecha_de_entrega</name>
+        <rename/>
       </field>
       <field>
         <name>fecha_cierre</name>
+        <rename/>
       </field>
       <field>
         <name>fecha_subida</name>
+        <rename/>
       </field>
       <field>
         <name>id_alumno</name>
+        <rename/>
       </field>
       <field>
         <name>id_curso</name>
+        <rename/>
+      </field>
+      <field>
+        <name>dow_fecha_de_entrega</name>
+        <rename/>
+      </field>
+      <field>
+        <name>dow_fecha_cierre</name>
+        <rename/>
+      </field>
+      <field>
+        <name>dow_fecha_subida</name>
+        <rename/>
       </field>
       <select_unspecified>N</select_unspecified>
     </fields>
@@ -894,6 +944,57 @@
         <currency_symbol/>
         <storage_type/>
       </meta>
+      <meta>
+        <name>dow_fecha_de_entrega</name>
+        <rename>dow_fecha_de_entrega</rename>
+        <type>Integer</type>
+        <length>15</length>
+        <precision>0</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>dow_fecha_cierre</name>
+        <rename>dow_fecha_cierre</rename>
+        <type>Integer</type>
+        <length>15</length>
+        <precision>0</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>dow_fecha_subida</name>
+        <rename>dow_fecha_subida</rename>
+        <type>Integer</type>
+        <length>15</length>
+        <precision>0</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
     </fields>
     <attributes/>
     <cluster_schema/>
@@ -904,7 +1005,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>800</xloc>
+      <xloc>784</xloc>
       <yloc>224</yloc>
       <draw>Y</draw>
     </GUI>
@@ -923,22 +1024,35 @@
     <fields>
       <field>
         <name>fecha_cierre</name>
+        <rename/>
       </field>
       <field>
         <name>fecha_subida</name>
+        <rename/>
       </field>
       <field>
         <name>id_alumno</name>
+        <rename/>
       </field>
       <field>
         <name>id_curso</name>
+        <rename/>
       </field>
       <field>
         <name>id_asignatura</name>
+        <rename/>
       </field>
       <field>
         <name>id_fecha</name>
         <rename>id_fecha_de_entrega</rename>
+      </field>
+      <field>
+        <name>dow_fecha_cierre</name>
+        <rename/>
+      </field>
+      <field>
+        <name>dow_fecha_subida</name>
+        <rename/>
       </field>
       <select_unspecified>N</select_unspecified>
     </fields>
@@ -951,7 +1065,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1216</xloc>
+      <xloc>1376</xloc>
       <yloc>224</yloc>
       <draw>Y</draw>
     </GUI>
@@ -970,69 +1084,31 @@
     <fields>
       <field>
         <name>fecha_subida</name>
+        <rename/>
       </field>
       <field>
         <name>id_alumno</name>
+        <rename/>
       </field>
       <field>
         <name>id_curso</name>
+        <rename/>
       </field>
       <field>
         <name>id_asignatura</name>
+        <rename/>
       </field>
       <field>
         <name>id_fecha_de_entrega</name>
+        <rename/>
       </field>
       <field>
         <name>id_fecha</name>
         <rename>id_fecha_cierre</rename>
       </field>
-      <select_unspecified>N</select_unspecified>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>1104</xloc>
-      <yloc>320</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Select values 6</name>
-    <type>SelectValues</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
       <field>
-        <name>id_alumno</name>
-      </field>
-      <field>
-        <name>id_curso</name>
-      </field>
-      <field>
-        <name>id_asignatura</name>
-      </field>
-      <field>
-        <name>id_fecha_de_entrega</name>
-      </field>
-      <field>
-        <name>id_fecha_cierre</name>
-      </field>
-      <field>
-        <name>id_fecha</name>
-        <rename>id_fecha_subida</rename>
+        <name>dow_fecha_subida</name>
+        <rename/>
       </field>
       <select_unspecified>N</select_unspecified>
     </fields>
@@ -1045,8 +1121,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>704</xloc>
-      <yloc>320</yloc>
+      <xloc>896</xloc>
+      <yloc>336</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1064,33 +1140,55 @@
     <fields>
       <field>
         <name>fecha_cierre</name>
+        <rename/>
       </field>
       <field>
         <name>fecha_subida</name>
+        <rename/>
       </field>
       <field>
         <name>id_alumno</name>
+        <rename/>
       </field>
       <field>
         <name>id_curso</name>
+        <rename/>
       </field>
       <field>
         <name>id_asignatura</name>
+        <rename/>
       </field>
       <field>
         <name>anio</name>
+        <rename/>
       </field>
       <field>
         <name>mes</name>
+        <rename/>
       </field>
       <field>
         <name>dia</name>
+        <rename/>
       </field>
       <field>
         <name>hora</name>
+        <rename/>
       </field>
       <field>
         <name>minuto</name>
+        <rename/>
+      </field>
+      <field>
+        <name>dow_fecha_de_entrega</name>
+        <rename/>
+      </field>
+      <field>
+        <name>dow_fecha_cierre</name>
+        <rename/>
+      </field>
+      <field>
+        <name>dow_fecha_subida</name>
+        <rename/>
       </field>
       <select_unspecified>N</select_unspecified>
       <meta>
@@ -1263,6 +1361,57 @@
         <currency_symbol/>
         <storage_type/>
       </meta>
+      <meta>
+        <name>dow_fecha_de_entrega</name>
+        <rename>dow_fecha_de_entrega</rename>
+        <type>Integer</type>
+        <length>15</length>
+        <precision>0</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>dow_fecha_cierre</name>
+        <rename>dow_fecha_cierre</rename>
+        <type>Integer</type>
+        <length>15</length>
+        <precision>0</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>dow_fecha_subida</name>
+        <rename>dow_fecha_subida</rename>
+        <type>Integer</type>
+        <length>15</length>
+        <precision>0</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
     </fields>
     <attributes/>
     <cluster_schema/>
@@ -1292,33 +1441,51 @@
     <fields>
       <field>
         <name>fecha_subida</name>
+        <rename/>
       </field>
       <field>
         <name>id_alumno</name>
+        <rename/>
       </field>
       <field>
         <name>id_curso</name>
+        <rename/>
       </field>
       <field>
         <name>id_asignatura</name>
+        <rename/>
       </field>
       <field>
         <name>id_fecha_de_entrega</name>
+        <rename/>
       </field>
       <field>
         <name>anio</name>
+        <rename/>
       </field>
       <field>
         <name>mes</name>
+        <rename/>
       </field>
       <field>
         <name>dia</name>
+        <rename/>
       </field>
       <field>
         <name>hora</name>
+        <rename/>
       </field>
       <field>
         <name>minuto</name>
+        <rename/>
+      </field>
+      <field>
+        <name>dow_fecha_cierre</name>
+        <rename/>
+      </field>
+      <field>
+        <name>dow_fecha_subida</name>
+        <rename/>
       </field>
       <select_unspecified>N</select_unspecified>
       <meta>
@@ -1491,6 +1658,40 @@
         <currency_symbol/>
         <storage_type/>
       </meta>
+      <meta>
+        <name>dow_fecha_cierre</name>
+        <rename>dow_fecha_cierre</rename>
+        <type>Integer</type>
+        <length>15</length>
+        <precision>0</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>dow_fecha_subida</name>
+        <rename>dow_fecha_subida</rename>
+        <type>Integer</type>
+        <length>15</length>
+        <precision>0</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
     </fields>
     <attributes/>
     <cluster_schema/>
@@ -1501,8 +1702,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1328</xloc>
-      <yloc>320</yloc>
+      <xloc>1248</xloc>
+      <yloc>336</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1520,33 +1721,47 @@
     <fields>
       <field>
         <name>id_alumno</name>
+        <rename/>
       </field>
       <field>
         <name>id_curso</name>
+        <rename/>
       </field>
       <field>
         <name>id_asignatura</name>
+        <rename/>
       </field>
       <field>
         <name>id_fecha_de_entrega</name>
+        <rename/>
       </field>
       <field>
         <name>id_fecha_cierre</name>
+        <rename/>
       </field>
       <field>
         <name>anio</name>
+        <rename/>
       </field>
       <field>
         <name>mes</name>
+        <rename/>
       </field>
       <field>
         <name>dia</name>
+        <rename/>
       </field>
       <field>
         <name>hora</name>
+        <rename/>
       </field>
       <field>
         <name>minuto</name>
+        <rename/>
+      </field>
+      <field>
+        <name>dow_fecha_subida</name>
+        <rename/>
       </field>
       <select_unspecified>N</select_unspecified>
       <meta>
@@ -1719,6 +1934,23 @@
         <currency_symbol/>
         <storage_type/>
       </meta>
+      <meta>
+        <name>dow_fecha_subida</name>
+        <rename>dow_fecha_subida</rename>
+        <type>Integer</type>
+        <length>15</length>
+        <precision>0</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
     </fields>
     <attributes/>
     <cluster_schema/>
@@ -1729,8 +1961,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>944</xloc>
-      <yloc>320</yloc>
+      <xloc>672</xloc>
+      <yloc>336</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1746,7 +1978,10 @@
       <schema_name/>
     </partitioning>
     <connection>conn_u</connection>
-    <sql>select mas.userid as alumno,ma.course as curso,ma.id as asignatura,from_unixtime(ma.duedate) as fecha_de_entrega,from_unixtime(ma.cutoffdate) as fecha_cierre, from_unixtime(mas.timemodified) as fecha_subida 
+    <sql>select mas.userid as alumno,ma.course as curso,ma.id as asignatura,
+from_unixtime(ma.duedate) as fecha_de_entrega, DAYOFWEEK(from_unixtime(ma.duedate)) as dow_fecha_de_entrega,
+from_unixtime(ma.cutoffdate) as fecha_cierre, DAYOFWEEK(from_unixtime(ma.cutoffdate )) as dow_fecha_cierre,
+from_unixtime(mas.timemodified) as fecha_subida, DAYOFWEEK(from_unixtime(mas.timemodified )) as dow_fecha_subida
 from mdl_assign_submission mas 
 join mdl_assign ma on mas.`assignment` = ma.id</sql>
     <limit>0</limit>
@@ -1849,6 +2084,29 @@ join mdl_assign ma on mas.`assignment` = ma.id</sql>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
       <value-meta>
+        <type>Integer</type>
+        <storagetype>normal</storagetype>
+        <name>dow_fecha_de_entrega</name>
+        <length>15</length>
+        <precision>0</precision>
+        <origin>Table input</origin>
+        <comments>dow_fecha_de_entrega</comments>
+        <conversion_Mask>####0;-####0</conversion_Mask>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>es_BO</date_format_locale>
+        <date_format_timezone>America/La_Paz</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
         <type>Timestamp</type>
         <storagetype>normal</storagetype>
         <name>fecha_cierre</name>
@@ -1872,6 +2130,29 @@ join mdl_assign ma on mas.`assignment` = ma.id</sql>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
       <value-meta>
+        <type>Integer</type>
+        <storagetype>normal</storagetype>
+        <name>dow_fecha_cierre</name>
+        <length>15</length>
+        <precision>0</precision>
+        <origin>Table input</origin>
+        <comments>dow_fecha_cierre</comments>
+        <conversion_Mask>####0;-####0</conversion_Mask>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>es_BO</date_format_locale>
+        <date_format_timezone>America/La_Paz</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
         <type>Timestamp</type>
         <storagetype>normal</storagetype>
         <name>fecha_subida</name>
@@ -1880,6 +2161,29 @@ join mdl_assign ma on mas.`assignment` = ma.id</sql>
         <origin>Table input</origin>
         <comments>fecha_subida</comments>
         <conversion_Mask/>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>es_BO</date_format_locale>
+        <date_format_timezone>America/La_Paz</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>Integer</type>
+        <storagetype>normal</storagetype>
+        <name>dow_fecha_subida</name>
+        <length>15</length>
+        <precision>0</precision>
+        <origin>Table input</origin>
+        <comments>dow_fecha_subida</comments>
+        <conversion_Mask>####0;-####0</conversion_Mask>
         <decimal_symbol>,</decimal_symbol>
         <grouping_symbol>.</grouping_symbol>
         <currency_symbol/>
@@ -1976,8 +2280,8 @@ join mdl_assign ma on mas.`assignment` = ma.id</sql>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>496</xloc>
-      <yloc>320</yloc>
+      <xloc>80</xloc>
+      <yloc>336</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2090,8 +2394,8 @@ join mdl_assign ma on mas.`assignment` = ma.id</sql>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1328</xloc>
-      <yloc>224</yloc>
+      <xloc>1376</xloc>
+      <yloc>336</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2147,8 +2451,8 @@ join mdl_assign ma on mas.`assignment` = ma.id</sql>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1024</xloc>
-      <yloc>320</yloc>
+      <xloc>784</xloc>
+      <yloc>336</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2241,7 +2545,7 @@ join mdl_assign ma on mas.`assignment` = ma.id</sql>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>688</xloc>
+      <xloc>672</xloc>
       <yloc>224</yloc>
       <draw>Y</draw>
     </GUI>
@@ -2288,7 +2592,7 @@ join mdl_assign ma on mas.`assignment` = ma.id</sql>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>432</xloc>
+      <xloc>400</xloc>
       <yloc>224</yloc>
       <draw>Y</draw>
     </GUI>
@@ -2334,6 +2638,10 @@ join mdl_assign ma on mas.`assignment` = ma.id</sql>
         <name>minuto</name>
         <lookup>minuto</lookup>
       </key>
+      <key>
+        <name>dia_semana</name>
+        <lookup>dia_semana</lookup>
+      </key>
       <return>
         <name>id_fecha</name>
         <creation_method>tablemax</creation_method>
@@ -2351,8 +2659,8 @@ join mdl_assign ma on mas.`assignment` = ma.id</sql>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1216</xloc>
-      <yloc>320</yloc>
+      <xloc>992</xloc>
+      <yloc>336</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2397,6 +2705,10 @@ join mdl_assign ma on mas.`assignment` = ma.id</sql>
         <name>minuto</name>
         <lookup>minuto</lookup>
       </key>
+      <key>
+        <name>dia_semana</name>
+        <lookup>dia_semana</lookup>
+      </key>
       <return>
         <name>id_fecha</name>
         <creation_method>tablemax</creation_method>
@@ -2414,7 +2726,7 @@ join mdl_assign ma on mas.`assignment` = ma.id</sql>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1104</xloc>
+      <xloc>1248</xloc>
       <yloc>224</yloc>
       <draw>Y</draw>
     </GUI>
@@ -2460,6 +2772,10 @@ join mdl_assign ma on mas.`assignment` = ma.id</sql>
         <name>minuto</name>
         <lookup>minuto</lookup>
       </key>
+      <key>
+        <name>dia_semana</name>
+        <lookup>dia_semana</lookup>
+      </key>
       <return>
         <name>id_fecha</name>
         <creation_method>tablemax</creation_method>
@@ -2477,8 +2793,246 @@ join mdl_assign ma on mas.`assignment` = ma.id</sql>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>832</xloc>
-      <yloc>320</yloc>
+      <xloc>400</xloc>
+      <yloc>336</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Modified JavaScript value</name>
+    <type>ScriptValueMod</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <compatible>N</compatible>
+    <optimizationLevel>9</optimizationLevel>
+    <jsScripts>
+      <jsScript>
+        <jsScript_type>0</jsScript_type>
+        <jsScript_name>Script 1</jsScript_name>
+        <jsScript_script>var dia_semana = "";
+var dow = dow_fecha_de_entrega;
+if(dow == 1){
+	dia_semana="Domingo";
+}else if(dow == 2){
+	dia_semana="Lunes";
+}else if(dow == 3){
+	dia_semana="Martes";
+}else if(dow == 4){
+	dia_semana="Miercoles";
+}else if(dow == 5){
+	dia_semana="Jueves";
+}else if(dow == 6){
+	dia_semana="Viernes";
+}else if(dow == 7){
+	dia_semana="Sabado";
+}
+
+</jsScript_script>
+      </jsScript>
+    </jsScripts>
+    <fields>
+      <field>
+        <name>dia_semana</name>
+        <rename>dia_semana</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1120</xloc>
+      <yloc>224</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Modified JavaScript value 2</name>
+    <type>ScriptValueMod</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <compatible>N</compatible>
+    <optimizationLevel>9</optimizationLevel>
+    <jsScripts>
+      <jsScript>
+        <jsScript_type>0</jsScript_type>
+        <jsScript_name>Script 1</jsScript_name>
+        <jsScript_script>var dia_semana = "";
+var dow = dow_fecha_cierre;
+if(dow == 1){
+	dia_semana="Domingo";
+}else if(dow == 2){
+	dia_semana="Lunes";
+}else if(dow == 3){
+	dia_semana="Martes";
+}else if(dow == 4){
+	dia_semana="Miercoles";
+}else if(dow == 5){
+	dia_semana="Jueves";
+}else if(dow == 6){
+	dia_semana="Viernes";
+}else if(dow == 7){
+	dia_semana="Sabado";
+}
+
+</jsScript_script>
+      </jsScript>
+    </jsScripts>
+    <fields>
+      <field>
+        <name>dia_semana</name>
+        <rename>dia_semana</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1120</xloc>
+      <yloc>336</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Modified JavaScript value 3</name>
+    <type>ScriptValueMod</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <compatible>N</compatible>
+    <optimizationLevel>9</optimizationLevel>
+    <jsScripts>
+      <jsScript>
+        <jsScript_type>0</jsScript_type>
+        <jsScript_name>Script 1</jsScript_name>
+        <jsScript_script>var dia_semana = "";
+var dow = dow_fecha_subida;
+if(dow == 1){
+	dia_semana="Domingo";
+}else if(dow == 2){
+	dia_semana="Lunes";
+}else if(dow == 3){
+	dia_semana="Martes";
+}else if(dow == 4){
+	dia_semana="Miercoles";
+}else if(dow == 5){
+	dia_semana="Jueves";
+}else if(dow == 6){
+	dia_semana="Viernes";
+}else if(dow == 7){
+	dia_semana="Sabado";
+}
+
+</jsScript_script>
+      </jsScript>
+    </jsScripts>
+    <fields>
+      <field>
+        <name>dia_semana</name>
+        <rename>dia_semana</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>544</xloc>
+      <yloc>336</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Select values 6</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>id_alumno</name>
+        <rename/>
+      </field>
+      <field>
+        <name>id_curso</name>
+        <rename/>
+      </field>
+      <field>
+        <name>id_asignatura</name>
+        <rename/>
+      </field>
+      <field>
+        <name>id_fecha_de_entrega</name>
+        <rename/>
+      </field>
+      <field>
+        <name>id_fecha_cierre</name>
+        <rename/>
+      </field>
+      <field>
+        <name>id_fecha</name>
+        <rename>id_fecha_subida</rename>
+      </field>
+      <select_unspecified>N</select_unspecified>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>288</xloc>
+      <yloc>336</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

@@ -18,7 +18,8 @@ CREATE TABLE dim_fecha(
     hora INT,
     dia INT,
     mes INT,
-    anio INT
+    anio INT,
+    dia_semana TEXT
 );
 
 -- mdl_course
@@ -51,7 +52,6 @@ CREATE TABLE hecho_entrega_asignatura(
     id_fecha_subida INT, -- usar timemodified?
     hecho_entrega INT,
     FOREIGN KEY (id_alumno) REFERENCES dim_usuario(id_usuario),
-    FOREIGN KEY (id_profesor) REFERENCES dim_usuario(id_usuario),
     FOREIGN KEY (id_curso) REFERENCES dim_curso(id_curso),
     FOREIGN KEY (id_asignatura) REFERENCES dim_asignatura(id_asignatura),
     FOREIGN KEY (id_fecha_de_entrega) REFERENCES dim_fecha(id_fecha),

@@ -584,6 +584,11 @@
     </hop>
     <hop>
       <from>Select values 3</from>
+      <to>Modified JavaScript value</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Modified JavaScript value</from>
       <to>Table output</to>
       <enabled>Y</enabled>
     </hop>
@@ -637,18 +642,17 @@
     <connection>conn</connection>
     <sql>-- mdl_course (startdate, enddate)
 -- mdl_assign (duedate, allowsubmissionsfromdate,cutoffdate,  gradingduedate)
-
-SELECT from_unixtime(startdate) from mdl_course
-UNION
-SELECT from_unixtime(enddate)  from mdl_course
-UNION
-SELECT from_unixtime(duedate) from mdl_assign
-UNION
-SELECT from_unixtime(allowsubmissionsfromdate) from mdl_assign
-UNION
-SELECT from_unixtime(cutoffdate) from mdl_assign
-UNION
-SELECT from_unixtime(gradingduedate) from mdl_assign</sql>
+	select distinct t.fecha, DAYOFWEEK(t.fecha) from (SELECT from_unixtime(startdate) as fecha from mdl_course
+	UNION
+	SELECT from_unixtime(enddate)  from mdl_course
+	UNION
+	SELECT from_unixtime(duedate) from mdl_assign
+	UNION
+	SELECT from_unixtime(allowsubmissionsfromdate) from mdl_assign
+	UNION
+	SELECT from_unixtime(cutoffdate) from mdl_assign
+	UNION
+	SELECT from_unixtime(gradingduedate) from mdl_assign) as t order by t.fecha</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -659,12 +663,35 @@ SELECT from_unixtime(gradingduedate) from mdl_assign</sql>
       <value-meta>
         <type>Timestamp</type>
         <storagetype>normal</storagetype>
-        <name>from_unixtime(startdate)</name>
+        <name>fecha</name>
         <length>0</length>
         <precision>-1</precision>
         <origin>Obtener fechas</origin>
-        <comments>from_unixtime(startdate)</comments>
+        <comments>fecha</comments>
         <conversion_Mask/>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>es_BO</date_format_locale>
+        <date_format_timezone>America/La_Paz</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>Integer</type>
+        <storagetype>normal</storagetype>
+        <name>DAYOFWEEK(t.fecha)</name>
+        <length>9</length>
+        <precision>0</precision>
+        <origin>Obtener fechas</origin>
+        <comments>DAYOFWEEK(t.fecha)</comments>
+        <conversion_Mask>####0;-####0</conversion_Mask>
         <decimal_symbol>,</decimal_symbol>
         <grouping_symbol>.</grouping_symbol>
         <currency_symbol/>
@@ -707,8 +734,12 @@ SELECT from_unixtime(gradingduedate) from mdl_assign</sql>
     </partitioning>
     <fields>
       <field>
-        <name>from_unixtime(startdate)</name>
+        <name>fecha</name>
         <rename>fechas</rename>
+      </field>
+      <field>
+        <name>DAYOFWEEK(t.fecha)</name>
+        <rename>dow</rename>
       </field>
       <select_unspecified>N</select_unspecified>
     </fields>
@@ -745,6 +776,23 @@ SELECT from_unixtime(gradingduedate) from mdl_assign</sql>
         <type>String</type>
         <length>0</length>
         <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>dow</name>
+        <rename>dow</rename>
+        <type>Integer</type>
+        <length>9</length>
+        <precision>0</precision>
         <conversion_mask/>
         <date_format_lenient>false</date_format_lenient>
         <date_format_locale/>
@@ -869,6 +917,23 @@ SELECT from_unixtime(gradingduedate) from mdl_assign</sql>
         <currency_symbol/>
         <storage_type/>
       </meta>
+      <meta>
+        <name>dow</name>
+        <rename>dow</rename>
+        <type>Integer</type>
+        <length>3</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
     </fields>
     <attributes/>
     <cluster_schema/>
@@ -975,6 +1040,10 @@ SELECT from_unixtime(gradingduedate) from mdl_assign</sql>
         <column_name>minuto</column_name>
         <stream_name>minuto</stream_name>
       </field>
+      <field>
+        <column_name>dia_semana</column_name>
+        <stream_name>dia_semana</stream_name>
+      </field>
     </fields>
     <attributes/>
     <cluster_schema/>
@@ -985,7 +1054,7 @@ SELECT from_unixtime(gradingduedate) from mdl_assign</sql>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1008</xloc>
+      <xloc>1152</xloc>
       <yloc>192</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1078,6 +1147,68 @@ SELECT from_unixtime(gradingduedate) from mdl_assign</sql>
     </remotesteps>
     <GUI>
       <xloc>784</xloc>
+      <yloc>192</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Modified JavaScript value</name>
+    <type>ScriptValueMod</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <compatible>N</compatible>
+    <optimizationLevel>9</optimizationLevel>
+    <jsScripts>
+      <jsScript>
+        <jsScript_type>0</jsScript_type>
+        <jsScript_name>Script 1</jsScript_name>
+        <jsScript_script>var dia_semana = "";
+
+if(dow == 1){
+	dia_semana="Domingo";
+}else if(dow == 2){
+	dia_semana="Lunes";
+}else if(dow == 3){
+	dia_semana="Martes";
+}else if(dow == 4){
+	dia_semana="Miercoles";
+}else if(dow == 5){
+	dia_semana="Jueves";
+}else if(dow == 6){
+	dia_semana="Viernes";
+}else if(dow == 7){
+	dia_semana="Sabado";
+}
+
+</jsScript_script>
+      </jsScript>
+    </jsScripts>
+    <fields>
+      <field>
+        <name>dia_semana</name>
+        <rename>dia_semana</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1024</xloc>
       <yloc>192</yloc>
       <draw>Y</draw>
     </GUI>
