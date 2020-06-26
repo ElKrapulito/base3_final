@@ -26,6 +26,7 @@ CREATE TABLE dim_fecha(
 CREATE TABLE dim_curso(
     id_curso SERIAL PRIMARY KEY,
     id_curso_database INT,
+    docente TEXT,
     fullname TEXT,
     category TEXT
 );
@@ -43,7 +44,6 @@ CREATE TABLE dim_asignatura(
 CREATE TABLE hecho_entrega_asignatura(
     id_hecho SERIAL PRIMARY KEY,
     id_alumno INT,
-    id_profesor INT,
     id_curso INT,
     id_asignatura INT,
     id_fecha_de_entrega INT,

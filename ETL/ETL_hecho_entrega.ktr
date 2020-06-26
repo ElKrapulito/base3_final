@@ -430,7 +430,7 @@
     <created_date>2020/06/24 01:23:32.909</created_date>
     <modified_user>-</modified_user>
     <modified_date>2020/06/24 01:23:32.909</modified_date>
-    <key_for_session_key/>
+    <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
@@ -440,7 +440,7 @@
     <server>localhost</server>
     <type>POSTGRESQL</type>
     <access>Native</access>
-    <database>dw_plataforma</database>
+    <database>dw_plataforma_2</database>
     <port>5432</port>
     <username>postgres</username>
     <password>Encrypted 2be98afc86aa7f2e4cb79ce108fc0fc8e</password>
@@ -648,8 +648,8 @@
     </hop>
   </order>
   <step>
-    <name>Table input</name>
-    <type>TableInput</type>
+    <name>Add constants</name>
+    <type>Constant</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -658,203 +658,20 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>conn_u</connection>
-    <sql>select mas.userid as alumno,ma.course as curso,ma.id as asignatura,from_unixtime(ma.duedate) as fecha_de_entrega,from_unixtime(ma.cutoffdate) as fecha_cierre, from_unixtime(mas.timemodified) as fecha_subida 
-from mdl_assign_submission mas 
-join mdl_assign ma on mas.`assignment` = ma.id</sql>
-    <limit>0</limit>
-    <lookup/>
-    <execute_each_row>N</execute_each_row>
-    <variables_active>N</variables_active>
-    <lazy_conversion_active>N</lazy_conversion_active>
-    <cached_row_meta_active>N</cached_row_meta_active>
-    <row-meta>
-      <value-meta>
-        <type>Integer</type>
-        <storagetype>normal</storagetype>
-        <name>alumno</name>
-        <length>15</length>
-        <precision>0</precision>
-        <origin>Table input</origin>
-        <comments>alumno</comments>
-        <conversion_Mask>####0;-####0</conversion_Mask>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>es_BO</date_format_locale>
-        <date_format_timezone>America/La_Paz</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>Integer</type>
-        <storagetype>normal</storagetype>
-        <name>curso</name>
-        <length>15</length>
-        <precision>0</precision>
-        <origin>Table input</origin>
-        <comments>curso</comments>
-        <conversion_Mask>####0;-####0</conversion_Mask>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>es_BO</date_format_locale>
-        <date_format_timezone>America/La_Paz</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>Integer</type>
-        <storagetype>normal</storagetype>
-        <name>asignatura</name>
-        <length>15</length>
-        <precision>0</precision>
-        <origin>Table input</origin>
-        <comments>asignatura</comments>
-        <conversion_Mask>####0;-####0</conversion_Mask>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>es_BO</date_format_locale>
-        <date_format_timezone>America/La_Paz</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>Timestamp</type>
-        <storagetype>normal</storagetype>
-        <name>fecha_de_entrega</name>
-        <length>0</length>
-        <precision>-1</precision>
-        <origin>Table input</origin>
-        <comments>fecha_de_entrega</comments>
-        <conversion_Mask/>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>es_BO</date_format_locale>
-        <date_format_timezone>America/La_Paz</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>Timestamp</type>
-        <storagetype>normal</storagetype>
-        <name>fecha_cierre</name>
-        <length>0</length>
-        <precision>-1</precision>
-        <origin>Table input</origin>
-        <comments>fecha_cierre</comments>
-        <conversion_Mask/>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>es_BO</date_format_locale>
-        <date_format_timezone>America/La_Paz</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>Timestamp</type>
-        <storagetype>normal</storagetype>
-        <name>fecha_subida</name>
-        <length>0</length>
-        <precision>-1</precision>
-        <origin>Table input</origin>
-        <comments>fecha_subida</comments>
-        <conversion_Mask/>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>es_BO</date_format_locale>
-        <date_format_timezone>America/La_Paz</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-    </row-meta>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>80</xloc>
-      <yloc>224</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>look_up_alumno</name>
-    <type>CombinationLookup</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <schema>public</schema>
-    <table>dim_usuario</table>
-    <connection>conn_dw</connection>
-    <commit>1000000</commit>
-    <cache_size>9999</cache_size>
-    <replace>N</replace>
-    <preloadCache>N</preloadCache>
-    <crc>N</crc>
-    <crcfield>hashcode</crcfield>
     <fields>
-      <key>
-        <name>alumno</name>
-        <lookup>id_usuario_database</lookup>
-      </key>
-      <return>
-        <name>id_usuario</name>
-        <creation_method>tablemax</creation_method>
-        <use_autoinc>N</use_autoinc>
-      </return>
+      <field>
+        <name>hecho_entrega</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>1</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
     </fields>
-    <sequence/>
-    <last_update_field/>
     <attributes/>
     <cluster_schema/>
     <remotesteps>
@@ -864,8 +681,8 @@ join mdl_assign ma on mas.`assignment` = ma.id</sql>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>192</xloc>
-      <yloc>224</yloc>
+      <xloc>608</xloc>
+      <yloc>320</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -883,23 +700,18 @@ join mdl_assign ma on mas.`assignment` = ma.id</sql>
     <fields>
       <field>
         <name>curso</name>
-        <rename/>
       </field>
       <field>
         <name>asignatura</name>
-        <rename/>
       </field>
       <field>
         <name>fecha_de_entrega</name>
-        <rename/>
       </field>
       <field>
         <name>fecha_cierre</name>
-        <rename/>
       </field>
       <field>
         <name>fecha_subida</name>
-        <rename/>
       </field>
       <field>
         <name>id_usuario</name>
@@ -922,53 +734,6 @@ join mdl_assign ma on mas.`assignment` = ma.id</sql>
     </GUI>
   </step>
   <step>
-    <name>look_up_curso</name>
-    <type>CombinationLookup</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <schema>public</schema>
-    <table>dim_curso</table>
-    <connection>conn_dw</connection>
-    <commit>100000</commit>
-    <cache_size>9999</cache_size>
-    <replace>N</replace>
-    <preloadCache>N</preloadCache>
-    <crc>N</crc>
-    <crcfield>hashcode</crcfield>
-    <fields>
-      <key>
-        <name>curso</name>
-        <lookup>id_curso_database</lookup>
-      </key>
-      <return>
-        <name>id_curso</name>
-        <creation_method>tablemax</creation_method>
-        <use_autoinc>N</use_autoinc>
-      </return>
-    </fields>
-    <sequence/>
-    <last_update_field/>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>432</xloc>
-      <yloc>224</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
     <name>Select values 2</name>
     <type>SelectValues</type>
     <description/>
@@ -982,27 +747,21 @@ join mdl_assign ma on mas.`assignment` = ma.id</sql>
     <fields>
       <field>
         <name>asignatura</name>
-        <rename/>
       </field>
       <field>
         <name>fecha_de_entrega</name>
-        <rename/>
       </field>
       <field>
         <name>fecha_cierre</name>
-        <rename/>
       </field>
       <field>
         <name>fecha_subida</name>
-        <rename/>
       </field>
       <field>
         <name>id_alumno</name>
-        <rename/>
       </field>
       <field>
         <name>id_curso</name>
-        <rename/>
       </field>
       <select_unspecified>N</select_unspecified>
     </fields>
@@ -1016,110 +775,6 @@ join mdl_assign ma on mas.`assignment` = ma.id</sql>
     </remotesteps>
     <GUI>
       <xloc>544</xloc>
-      <yloc>224</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>look_up_asignatura</name>
-    <type>CombinationLookup</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <schema>public</schema>
-    <table>dim_asignatura</table>
-    <connection>conn_dw</connection>
-    <commit>100000</commit>
-    <cache_size>9999</cache_size>
-    <replace>N</replace>
-    <preloadCache>N</preloadCache>
-    <crc>N</crc>
-    <crcfield>hashcode</crcfield>
-    <fields>
-      <key>
-        <name>asignatura</name>
-        <lookup>id_asignatura_database</lookup>
-      </key>
-      <return>
-        <name>id_asignatura</name>
-        <creation_method>tablemax</creation_method>
-        <use_autoinc>N</use_autoinc>
-      </return>
-    </fields>
-    <sequence/>
-    <last_update_field/>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>688</xloc>
-      <yloc>224</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>fecha cut</name>
-    <type>StringCut</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <in_stream_name>fecha_de_entrega</in_stream_name>
-        <out_stream_name>anio</out_stream_name>
-        <cut_from>0</cut_from>
-        <cut_to>4</cut_to>
-      </field>
-      <field>
-        <in_stream_name>fecha_de_entrega</in_stream_name>
-        <out_stream_name>mes</out_stream_name>
-        <cut_from>5</cut_from>
-        <cut_to>7</cut_to>
-      </field>
-      <field>
-        <in_stream_name>fecha_de_entrega</in_stream_name>
-        <out_stream_name>dia</out_stream_name>
-        <cut_from>8</cut_from>
-        <cut_to>10</cut_to>
-      </field>
-      <field>
-        <in_stream_name>fecha_de_entrega</in_stream_name>
-        <out_stream_name>hora</out_stream_name>
-        <cut_from>11</cut_from>
-        <cut_to>13</cut_to>
-      </field>
-      <field>
-        <in_stream_name>fecha_de_entrega</in_stream_name>
-        <out_stream_name>minuto</out_stream_name>
-        <cut_from>14</cut_from>
-        <cut_to>16</cut_to>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>896</xloc>
       <yloc>224</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1255,69 +910,6 @@ join mdl_assign ma on mas.`assignment` = ma.id</sql>
     </GUI>
   </step>
   <step>
-    <name>look_up_fecha_de_entrega</name>
-    <type>CombinationLookup</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <schema>public</schema>
-    <table>dim_fecha</table>
-    <connection>conn_dw</connection>
-    <commit>100000</commit>
-    <cache_size>9999</cache_size>
-    <replace>N</replace>
-    <preloadCache>N</preloadCache>
-    <crc>N</crc>
-    <crcfield>hashcode</crcfield>
-    <fields>
-      <key>
-        <name>anio</name>
-        <lookup>anio</lookup>
-      </key>
-      <key>
-        <name>mes</name>
-        <lookup>mes</lookup>
-      </key>
-      <key>
-        <name>dia</name>
-        <lookup>dia</lookup>
-      </key>
-      <key>
-        <name>hora</name>
-        <lookup>hora</lookup>
-      </key>
-      <key>
-        <name>minuto</name>
-        <lookup>minuto</lookup>
-      </key>
-      <return>
-        <name>id_fecha</name>
-        <creation_method>tablemax</creation_method>
-        <use_autoinc>N</use_autoinc>
-      </return>
-    </fields>
-    <sequence/>
-    <last_update_field/>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>1104</xloc>
-      <yloc>224</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
     <name>Select values 4</name>
     <type>SelectValues</type>
     <description/>
@@ -1331,23 +923,18 @@ join mdl_assign ma on mas.`assignment` = ma.id</sql>
     <fields>
       <field>
         <name>fecha_cierre</name>
-        <rename/>
       </field>
       <field>
         <name>fecha_subida</name>
-        <rename/>
       </field>
       <field>
         <name>id_alumno</name>
-        <rename/>
       </field>
       <field>
         <name>id_curso</name>
-        <rename/>
       </field>
       <field>
         <name>id_asignatura</name>
-        <rename/>
       </field>
       <field>
         <name>id_fecha</name>
@@ -1370,126 +957,6 @@ join mdl_assign ma on mas.`assignment` = ma.id</sql>
     </GUI>
   </step>
   <step>
-    <name>look_up_fecha_cierre</name>
-    <type>CombinationLookup</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <schema>public</schema>
-    <table>dim_fecha</table>
-    <connection>conn_dw</connection>
-    <commit>10000</commit>
-    <cache_size>9999</cache_size>
-    <replace>N</replace>
-    <preloadCache>N</preloadCache>
-    <crc>N</crc>
-    <crcfield>hashcode</crcfield>
-    <fields>
-      <key>
-        <name>anio</name>
-        <lookup>anio</lookup>
-      </key>
-      <key>
-        <name>mes</name>
-        <lookup>mes</lookup>
-      </key>
-      <key>
-        <name>dia</name>
-        <lookup>dia</lookup>
-      </key>
-      <key>
-        <name>hora</name>
-        <lookup>hora</lookup>
-      </key>
-      <key>
-        <name>minuto</name>
-        <lookup>minuto</lookup>
-      </key>
-      <return>
-        <name>id_fecha</name>
-        <creation_method>tablemax</creation_method>
-        <use_autoinc>N</use_autoinc>
-      </return>
-    </fields>
-    <sequence/>
-    <last_update_field/>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>1216</xloc>
-      <yloc>320</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>fecha cut 2</name>
-    <type>StringCut</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <in_stream_name>fecha_cierre</in_stream_name>
-        <out_stream_name>anio</out_stream_name>
-        <cut_from>0</cut_from>
-        <cut_to>4</cut_to>
-      </field>
-      <field>
-        <in_stream_name>fecha_cierre</in_stream_name>
-        <out_stream_name>mes</out_stream_name>
-        <cut_from>5</cut_from>
-        <cut_to>7</cut_to>
-      </field>
-      <field>
-        <in_stream_name>fecha_cierre</in_stream_name>
-        <out_stream_name>dia</out_stream_name>
-        <cut_from>8</cut_from>
-        <cut_to>10</cut_to>
-      </field>
-      <field>
-        <in_stream_name>fecha_cierre</in_stream_name>
-        <out_stream_name>hora</out_stream_name>
-        <cut_from>11</cut_from>
-        <cut_to>13</cut_to>
-      </field>
-      <field>
-        <in_stream_name>fecha_cierre</in_stream_name>
-        <out_stream_name>minuto</out_stream_name>
-        <cut_from>14</cut_from>
-        <cut_to>16</cut_to>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>1328</xloc>
-      <yloc>224</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
     <name>Select values 5</name>
     <type>SelectValues</type>
     <description/>
@@ -1503,23 +970,18 @@ join mdl_assign ma on mas.`assignment` = ma.id</sql>
     <fields>
       <field>
         <name>fecha_subida</name>
-        <rename/>
       </field>
       <field>
         <name>id_alumno</name>
-        <rename/>
       </field>
       <field>
         <name>id_curso</name>
-        <rename/>
       </field>
       <field>
         <name>id_asignatura</name>
-        <rename/>
       </field>
       <field>
         <name>id_fecha_de_entrega</name>
-        <rename/>
       </field>
       <field>
         <name>id_fecha</name>
@@ -1542,126 +1004,6 @@ join mdl_assign ma on mas.`assignment` = ma.id</sql>
     </GUI>
   </step>
   <step>
-    <name>fecha cut 3</name>
-    <type>StringCut</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <in_stream_name>fecha_subida</in_stream_name>
-        <out_stream_name>anio</out_stream_name>
-        <cut_from>0</cut_from>
-        <cut_to>4</cut_to>
-      </field>
-      <field>
-        <in_stream_name>fecha_subida</in_stream_name>
-        <out_stream_name>mes</out_stream_name>
-        <cut_from>5</cut_from>
-        <cut_to>7</cut_to>
-      </field>
-      <field>
-        <in_stream_name>fecha_subida</in_stream_name>
-        <out_stream_name>dia</out_stream_name>
-        <cut_from>8</cut_from>
-        <cut_to>10</cut_to>
-      </field>
-      <field>
-        <in_stream_name>fecha_subida</in_stream_name>
-        <out_stream_name>hora</out_stream_name>
-        <cut_from>11</cut_from>
-        <cut_to>13</cut_to>
-      </field>
-      <field>
-        <in_stream_name>fecha_subida</in_stream_name>
-        <out_stream_name>minuto</out_stream_name>
-        <cut_from>14</cut_from>
-        <cut_to>16</cut_to>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>1024</xloc>
-      <yloc>320</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>look_up_fecha_subida</name>
-    <type>CombinationLookup</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <schema>public</schema>
-    <table>dim_fecha</table>
-    <connection>conn_dw</connection>
-    <commit>1000000</commit>
-    <cache_size>9999</cache_size>
-    <replace>N</replace>
-    <preloadCache>N</preloadCache>
-    <crc>N</crc>
-    <crcfield>hashcode</crcfield>
-    <fields>
-      <key>
-        <name>anio</name>
-        <lookup>anio</lookup>
-      </key>
-      <key>
-        <name>mes</name>
-        <lookup>mes</lookup>
-      </key>
-      <key>
-        <name>dia</name>
-        <lookup>dia</lookup>
-      </key>
-      <key>
-        <name>hora</name>
-        <lookup>hora</lookup>
-      </key>
-      <key>
-        <name>minuto</name>
-        <lookup>minuto</lookup>
-      </key>
-      <return>
-        <name>id_fecha</name>
-        <creation_method>tablemax</creation_method>
-        <use_autoinc>N</use_autoinc>
-      </return>
-    </fields>
-    <sequence/>
-    <last_update_field/>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>832</xloc>
-      <yloc>320</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
     <name>Select values 6</name>
     <type>SelectValues</type>
     <description/>
@@ -1675,23 +1017,18 @@ join mdl_assign ma on mas.`assignment` = ma.id</sql>
     <fields>
       <field>
         <name>id_alumno</name>
-        <rename/>
       </field>
       <field>
         <name>id_curso</name>
-        <rename/>
       </field>
       <field>
         <name>id_asignatura</name>
-        <rename/>
       </field>
       <field>
         <name>id_fecha_de_entrega</name>
-        <rename/>
       </field>
       <field>
         <name>id_fecha_cierre</name>
-        <rename/>
       </field>
       <field>
         <name>id_fecha</name>
@@ -1714,117 +1051,6 @@ join mdl_assign ma on mas.`assignment` = ma.id</sql>
     </GUI>
   </step>
   <step>
-    <name>Add constants</name>
-    <type>Constant</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <name>hecho_entrega</name>
-        <type>Integer</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif>1</nullif>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>608</xloc>
-      <yloc>320</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Table output</name>
-    <type>TableOutput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>conn_dw</connection>
-    <schema>public</schema>
-    <table>hecho_entrega_asignatura</table>
-    <commit>1000000</commit>
-    <truncate>N</truncate>
-    <ignore_errors>N</ignore_errors>
-    <use_batch>Y</use_batch>
-    <specify_fields>Y</specify_fields>
-    <partitioning_enabled>N</partitioning_enabled>
-    <partitioning_field/>
-    <partitioning_daily>N</partitioning_daily>
-    <partitioning_monthly>Y</partitioning_monthly>
-    <tablename_in_field>N</tablename_in_field>
-    <tablename_field/>
-    <tablename_in_table>Y</tablename_in_table>
-    <return_keys>N</return_keys>
-    <return_field/>
-    <fields>
-      <field>
-        <column_name>id_alumno</column_name>
-        <stream_name>id_alumno</stream_name>
-      </field>
-      <field>
-        <column_name>id_curso</column_name>
-        <stream_name>id_curso</stream_name>
-      </field>
-      <field>
-        <column_name>id_asignatura</column_name>
-        <stream_name>id_asignatura</stream_name>
-      </field>
-      <field>
-        <column_name>id_fecha_de_entrega</column_name>
-        <stream_name>id_fecha_de_entrega</stream_name>
-      </field>
-      <field>
-        <column_name>id_fecha_cierre</column_name>
-        <stream_name>id_fecha_cierre</stream_name>
-      </field>
-      <field>
-        <column_name>id_fecha_subida</column_name>
-        <stream_name>id_fecha_subida</stream_name>
-      </field>
-      <field>
-        <column_name>hecho_entrega</column_name>
-        <stream_name>hecho_entrega</stream_name>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>496</xloc>
-      <yloc>320</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
     <name>Select values 7</name>
     <type>SelectValues</type>
     <description/>
@@ -1838,43 +1064,33 @@ join mdl_assign ma on mas.`assignment` = ma.id</sql>
     <fields>
       <field>
         <name>fecha_cierre</name>
-        <rename/>
       </field>
       <field>
         <name>fecha_subida</name>
-        <rename/>
       </field>
       <field>
         <name>id_alumno</name>
-        <rename/>
       </field>
       <field>
         <name>id_curso</name>
-        <rename/>
       </field>
       <field>
         <name>id_asignatura</name>
-        <rename/>
       </field>
       <field>
         <name>anio</name>
-        <rename/>
       </field>
       <field>
         <name>mes</name>
-        <rename/>
       </field>
       <field>
         <name>dia</name>
-        <rename/>
       </field>
       <field>
         <name>hora</name>
-        <rename/>
       </field>
       <field>
         <name>minuto</name>
-        <rename/>
       </field>
       <select_unspecified>N</select_unspecified>
       <meta>
@@ -2076,43 +1292,33 @@ join mdl_assign ma on mas.`assignment` = ma.id</sql>
     <fields>
       <field>
         <name>fecha_subida</name>
-        <rename/>
       </field>
       <field>
         <name>id_alumno</name>
-        <rename/>
       </field>
       <field>
         <name>id_curso</name>
-        <rename/>
       </field>
       <field>
         <name>id_asignatura</name>
-        <rename/>
       </field>
       <field>
         <name>id_fecha_de_entrega</name>
-        <rename/>
       </field>
       <field>
         <name>anio</name>
-        <rename/>
       </field>
       <field>
         <name>mes</name>
-        <rename/>
       </field>
       <field>
         <name>dia</name>
-        <rename/>
       </field>
       <field>
         <name>hora</name>
-        <rename/>
       </field>
       <field>
         <name>minuto</name>
-        <rename/>
       </field>
       <select_unspecified>N</select_unspecified>
       <meta>
@@ -2314,43 +1520,33 @@ join mdl_assign ma on mas.`assignment` = ma.id</sql>
     <fields>
       <field>
         <name>id_alumno</name>
-        <rename/>
       </field>
       <field>
         <name>id_curso</name>
-        <rename/>
       </field>
       <field>
         <name>id_asignatura</name>
-        <rename/>
       </field>
       <field>
         <name>id_fecha_de_entrega</name>
-        <rename/>
       </field>
       <field>
         <name>id_fecha_cierre</name>
-        <rename/>
       </field>
       <field>
         <name>anio</name>
-        <rename/>
       </field>
       <field>
         <name>mes</name>
-        <rename/>
       </field>
       <field>
         <name>dia</name>
-        <rename/>
       </field>
       <field>
         <name>hora</name>
-        <rename/>
       </field>
       <field>
         <name>minuto</name>
-        <rename/>
       </field>
       <select_unspecified>N</select_unspecified>
       <meta>
@@ -2534,6 +1730,754 @@ join mdl_assign ma on mas.`assignment` = ma.id</sql>
     </remotesteps>
     <GUI>
       <xloc>944</xloc>
+      <yloc>320</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Table input</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>conn_u</connection>
+    <sql>select mas.userid as alumno,ma.course as curso,ma.id as asignatura,from_unixtime(ma.duedate) as fecha_de_entrega,from_unixtime(ma.cutoffdate) as fecha_cierre, from_unixtime(mas.timemodified) as fecha_subida 
+from mdl_assign_submission mas 
+join mdl_assign ma on mas.`assignment` = ma.id</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+    <cached_row_meta_active>N</cached_row_meta_active>
+    <row-meta>
+      <value-meta>
+        <type>Integer</type>
+        <storagetype>normal</storagetype>
+        <name>alumno</name>
+        <length>15</length>
+        <precision>0</precision>
+        <origin>Table input</origin>
+        <comments>alumno</comments>
+        <conversion_Mask>####0;-####0</conversion_Mask>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>es_BO</date_format_locale>
+        <date_format_timezone>America/La_Paz</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>Integer</type>
+        <storagetype>normal</storagetype>
+        <name>curso</name>
+        <length>15</length>
+        <precision>0</precision>
+        <origin>Table input</origin>
+        <comments>curso</comments>
+        <conversion_Mask>####0;-####0</conversion_Mask>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>es_BO</date_format_locale>
+        <date_format_timezone>America/La_Paz</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>Integer</type>
+        <storagetype>normal</storagetype>
+        <name>asignatura</name>
+        <length>15</length>
+        <precision>0</precision>
+        <origin>Table input</origin>
+        <comments>asignatura</comments>
+        <conversion_Mask>####0;-####0</conversion_Mask>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>es_BO</date_format_locale>
+        <date_format_timezone>America/La_Paz</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>Timestamp</type>
+        <storagetype>normal</storagetype>
+        <name>fecha_de_entrega</name>
+        <length>0</length>
+        <precision>-1</precision>
+        <origin>Table input</origin>
+        <comments>fecha_de_entrega</comments>
+        <conversion_Mask/>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>es_BO</date_format_locale>
+        <date_format_timezone>America/La_Paz</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>Timestamp</type>
+        <storagetype>normal</storagetype>
+        <name>fecha_cierre</name>
+        <length>0</length>
+        <precision>-1</precision>
+        <origin>Table input</origin>
+        <comments>fecha_cierre</comments>
+        <conversion_Mask/>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>es_BO</date_format_locale>
+        <date_format_timezone>America/La_Paz</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>Timestamp</type>
+        <storagetype>normal</storagetype>
+        <name>fecha_subida</name>
+        <length>0</length>
+        <precision>-1</precision>
+        <origin>Table input</origin>
+        <comments>fecha_subida</comments>
+        <conversion_Mask/>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>es_BO</date_format_locale>
+        <date_format_timezone>America/La_Paz</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+    </row-meta>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>80</xloc>
+      <yloc>224</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Table output</name>
+    <type>TableOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>conn_dw</connection>
+    <schema>public</schema>
+    <table>hecho_entrega_asignatura</table>
+    <commit>1000000</commit>
+    <truncate>N</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>Y</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field/>
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field/>
+    <fields>
+      <field>
+        <column_name>id_alumno</column_name>
+        <stream_name>id_alumno</stream_name>
+      </field>
+      <field>
+        <column_name>id_curso</column_name>
+        <stream_name>id_curso</stream_name>
+      </field>
+      <field>
+        <column_name>id_asignatura</column_name>
+        <stream_name>id_asignatura</stream_name>
+      </field>
+      <field>
+        <column_name>id_fecha_de_entrega</column_name>
+        <stream_name>id_fecha_de_entrega</stream_name>
+      </field>
+      <field>
+        <column_name>id_fecha_cierre</column_name>
+        <stream_name>id_fecha_cierre</stream_name>
+      </field>
+      <field>
+        <column_name>id_fecha_subida</column_name>
+        <stream_name>id_fecha_subida</stream_name>
+      </field>
+      <field>
+        <column_name>hecho_entrega</column_name>
+        <stream_name>hecho_entrega</stream_name>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>496</xloc>
+      <yloc>320</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>fecha cut</name>
+    <type>StringCut</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <in_stream_name>fecha_de_entrega</in_stream_name>
+        <out_stream_name>anio</out_stream_name>
+        <cut_from>0</cut_from>
+        <cut_to>4</cut_to>
+      </field>
+      <field>
+        <in_stream_name>fecha_de_entrega</in_stream_name>
+        <out_stream_name>mes</out_stream_name>
+        <cut_from>5</cut_from>
+        <cut_to>7</cut_to>
+      </field>
+      <field>
+        <in_stream_name>fecha_de_entrega</in_stream_name>
+        <out_stream_name>dia</out_stream_name>
+        <cut_from>8</cut_from>
+        <cut_to>10</cut_to>
+      </field>
+      <field>
+        <in_stream_name>fecha_de_entrega</in_stream_name>
+        <out_stream_name>hora</out_stream_name>
+        <cut_from>11</cut_from>
+        <cut_to>13</cut_to>
+      </field>
+      <field>
+        <in_stream_name>fecha_de_entrega</in_stream_name>
+        <out_stream_name>minuto</out_stream_name>
+        <cut_from>14</cut_from>
+        <cut_to>16</cut_to>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>896</xloc>
+      <yloc>224</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>fecha cut 2</name>
+    <type>StringCut</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <in_stream_name>fecha_cierre</in_stream_name>
+        <out_stream_name>anio</out_stream_name>
+        <cut_from>0</cut_from>
+        <cut_to>4</cut_to>
+      </field>
+      <field>
+        <in_stream_name>fecha_cierre</in_stream_name>
+        <out_stream_name>mes</out_stream_name>
+        <cut_from>5</cut_from>
+        <cut_to>7</cut_to>
+      </field>
+      <field>
+        <in_stream_name>fecha_cierre</in_stream_name>
+        <out_stream_name>dia</out_stream_name>
+        <cut_from>8</cut_from>
+        <cut_to>10</cut_to>
+      </field>
+      <field>
+        <in_stream_name>fecha_cierre</in_stream_name>
+        <out_stream_name>hora</out_stream_name>
+        <cut_from>11</cut_from>
+        <cut_to>13</cut_to>
+      </field>
+      <field>
+        <in_stream_name>fecha_cierre</in_stream_name>
+        <out_stream_name>minuto</out_stream_name>
+        <cut_from>14</cut_from>
+        <cut_to>16</cut_to>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1328</xloc>
+      <yloc>224</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>fecha cut 3</name>
+    <type>StringCut</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <in_stream_name>fecha_subida</in_stream_name>
+        <out_stream_name>anio</out_stream_name>
+        <cut_from>0</cut_from>
+        <cut_to>4</cut_to>
+      </field>
+      <field>
+        <in_stream_name>fecha_subida</in_stream_name>
+        <out_stream_name>mes</out_stream_name>
+        <cut_from>5</cut_from>
+        <cut_to>7</cut_to>
+      </field>
+      <field>
+        <in_stream_name>fecha_subida</in_stream_name>
+        <out_stream_name>dia</out_stream_name>
+        <cut_from>8</cut_from>
+        <cut_to>10</cut_to>
+      </field>
+      <field>
+        <in_stream_name>fecha_subida</in_stream_name>
+        <out_stream_name>hora</out_stream_name>
+        <cut_from>11</cut_from>
+        <cut_to>13</cut_to>
+      </field>
+      <field>
+        <in_stream_name>fecha_subida</in_stream_name>
+        <out_stream_name>minuto</out_stream_name>
+        <cut_from>14</cut_from>
+        <cut_to>16</cut_to>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1024</xloc>
+      <yloc>320</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>look_up_alumno</name>
+    <type>CombinationLookup</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <schema>public</schema>
+    <table>dim_usuario</table>
+    <connection>conn_dw</connection>
+    <commit>1000000</commit>
+    <cache_size>9999</cache_size>
+    <replace>N</replace>
+    <preloadCache>N</preloadCache>
+    <crc>N</crc>
+    <crcfield>hashcode</crcfield>
+    <fields>
+      <key>
+        <name>alumno</name>
+        <lookup>id_usuario_database</lookup>
+      </key>
+      <return>
+        <name>id_usuario</name>
+        <creation_method>tablemax</creation_method>
+        <use_autoinc>N</use_autoinc>
+      </return>
+    </fields>
+    <sequence/>
+    <last_update_field/>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>192</xloc>
+      <yloc>224</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>look_up_asignatura</name>
+    <type>CombinationLookup</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <schema>public</schema>
+    <table>dim_asignatura</table>
+    <connection>conn_dw</connection>
+    <commit>100000</commit>
+    <cache_size>9999</cache_size>
+    <replace>N</replace>
+    <preloadCache>N</preloadCache>
+    <crc>N</crc>
+    <crcfield>hashcode</crcfield>
+    <fields>
+      <key>
+        <name>asignatura</name>
+        <lookup>id_asignatura_database</lookup>
+      </key>
+      <return>
+        <name>id_asignatura</name>
+        <creation_method>tablemax</creation_method>
+        <use_autoinc>N</use_autoinc>
+      </return>
+    </fields>
+    <sequence/>
+    <last_update_field/>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>688</xloc>
+      <yloc>224</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>look_up_curso</name>
+    <type>CombinationLookup</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <schema>public</schema>
+    <table>dim_curso</table>
+    <connection>conn_dw</connection>
+    <commit>100000</commit>
+    <cache_size>9999</cache_size>
+    <replace>N</replace>
+    <preloadCache>N</preloadCache>
+    <crc>N</crc>
+    <crcfield>hashcode</crcfield>
+    <fields>
+      <key>
+        <name>curso</name>
+        <lookup>id_curso_database</lookup>
+      </key>
+      <return>
+        <name>id_curso</name>
+        <creation_method>tablemax</creation_method>
+        <use_autoinc>N</use_autoinc>
+      </return>
+    </fields>
+    <sequence/>
+    <last_update_field/>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>432</xloc>
+      <yloc>224</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>look_up_fecha_cierre</name>
+    <type>CombinationLookup</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <schema>public</schema>
+    <table>dim_fecha</table>
+    <connection>conn_dw</connection>
+    <commit>10000</commit>
+    <cache_size>9999</cache_size>
+    <replace>N</replace>
+    <preloadCache>N</preloadCache>
+    <crc>N</crc>
+    <crcfield>hashcode</crcfield>
+    <fields>
+      <key>
+        <name>anio</name>
+        <lookup>anio</lookup>
+      </key>
+      <key>
+        <name>mes</name>
+        <lookup>mes</lookup>
+      </key>
+      <key>
+        <name>dia</name>
+        <lookup>dia</lookup>
+      </key>
+      <key>
+        <name>hora</name>
+        <lookup>hora</lookup>
+      </key>
+      <key>
+        <name>minuto</name>
+        <lookup>minuto</lookup>
+      </key>
+      <return>
+        <name>id_fecha</name>
+        <creation_method>tablemax</creation_method>
+        <use_autoinc>N</use_autoinc>
+      </return>
+    </fields>
+    <sequence/>
+    <last_update_field/>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1216</xloc>
+      <yloc>320</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>look_up_fecha_de_entrega</name>
+    <type>CombinationLookup</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <schema>public</schema>
+    <table>dim_fecha</table>
+    <connection>conn_dw</connection>
+    <commit>100000</commit>
+    <cache_size>9999</cache_size>
+    <replace>N</replace>
+    <preloadCache>N</preloadCache>
+    <crc>N</crc>
+    <crcfield>hashcode</crcfield>
+    <fields>
+      <key>
+        <name>anio</name>
+        <lookup>anio</lookup>
+      </key>
+      <key>
+        <name>mes</name>
+        <lookup>mes</lookup>
+      </key>
+      <key>
+        <name>dia</name>
+        <lookup>dia</lookup>
+      </key>
+      <key>
+        <name>hora</name>
+        <lookup>hora</lookup>
+      </key>
+      <key>
+        <name>minuto</name>
+        <lookup>minuto</lookup>
+      </key>
+      <return>
+        <name>id_fecha</name>
+        <creation_method>tablemax</creation_method>
+        <use_autoinc>N</use_autoinc>
+      </return>
+    </fields>
+    <sequence/>
+    <last_update_field/>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1104</xloc>
+      <yloc>224</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>look_up_fecha_subida</name>
+    <type>CombinationLookup</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <schema>public</schema>
+    <table>dim_fecha</table>
+    <connection>conn_dw</connection>
+    <commit>1000000</commit>
+    <cache_size>9999</cache_size>
+    <replace>N</replace>
+    <preloadCache>N</preloadCache>
+    <crc>N</crc>
+    <crcfield>hashcode</crcfield>
+    <fields>
+      <key>
+        <name>anio</name>
+        <lookup>anio</lookup>
+      </key>
+      <key>
+        <name>mes</name>
+        <lookup>mes</lookup>
+      </key>
+      <key>
+        <name>dia</name>
+        <lookup>dia</lookup>
+      </key>
+      <key>
+        <name>hora</name>
+        <lookup>hora</lookup>
+      </key>
+      <key>
+        <name>minuto</name>
+        <lookup>minuto</lookup>
+      </key>
+      <return>
+        <name>id_fecha</name>
+        <creation_method>tablemax</creation_method>
+        <use_autoinc>N</use_autoinc>
+      </return>
+    </fields>
+    <sequence/>
+    <last_update_field/>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>832</xloc>
       <yloc>320</yloc>
       <draw>Y</draw>
     </GUI>
