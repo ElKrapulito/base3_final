@@ -59,6 +59,16 @@
         <Level name="Minuto" visible="true" column="minuto" type="String" uniqueMembers="false" levelType="TimeMinutes" hideMemberIf="Never">
         </Level>
       </Hierarchy>
+      <Hierarchy name="Dia de la Semana" visible="true" hasAll="true" primaryKey="id_fecha">
+        <Table name="dim_fecha" schema="public" alias="">
+        </Table>
+        <Level name="A&#241;o" visible="true" column="anio" type="String" uniqueMembers="false" levelType="TimeYears">
+        </Level>
+        <Level name="Mes" visible="true" column="mes" type="String" uniqueMembers="false" levelType="TimeMonths">
+        </Level>
+        <Level name="Dia de la semana" visible="true" column="dia_semana" type="String" uniqueMembers="false" levelType="TimeUndefined">
+        </Level>
+      </Hierarchy>
     </Dimension>
     <Dimension type="TimeDimension" visible="true" foreignKey="id_fecha_subida" highCardinality="false" name="Fecha subida">
       <Hierarchy name="Fecha subida" visible="true" hasAll="true" primaryKey="id_fecha">
@@ -75,6 +85,16 @@
         <Level name="Minuto" visible="true" column="minuto" type="String" uniqueMembers="false" levelType="TimeMinutes" hideMemberIf="Never">
         </Level>
       </Hierarchy>
+      <Hierarchy name="Dia de la semana" visible="true" hasAll="true" primaryKey="id_fecha">
+        <Table name="dim_fecha" schema="public" alias="">
+        </Table>
+        <Level name="A&#241;o" visible="true" column="anio" type="String" uniqueMembers="false" levelType="TimeYears">
+        </Level>
+        <Level name="Mes" visible="true" column="mes" type="String" uniqueMembers="false" levelType="TimeMonths">
+        </Level>
+        <Level name="Dia de la semana" visible="true" column="dia_semana" type="String" uniqueMembers="false" levelType="TimeUndefined">
+        </Level>
+      </Hierarchy>
     </Dimension>
     <Dimension type="TimeDimension" visible="true" foreignKey="id_fecha_cierre" highCardinality="false" name="Fecha cierre">
       <Hierarchy name="Fecha cierre" visible="true" hasAll="true" primaryKey="id_fecha">
@@ -89,6 +109,16 @@
         <Level name="Hora" visible="true" column="hora" type="String" uniqueMembers="false" levelType="TimeHours" hideMemberIf="Never">
         </Level>
         <Level name="Minuto" visible="true" column="minuto" type="String" uniqueMembers="false" levelType="TimeMinutes" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+      <Hierarchy name="Dia de la semana" visible="true" hasAll="true" primaryKey="id_fecha">
+        <Table name="dim_fecha" schema="public" alias="">
+        </Table>
+        <Level name="A&#241;o" visible="true" column="anio" type="String" uniqueMembers="false" levelType="TimeYears">
+        </Level>
+        <Level name="Mes" visible="true" column="mes" type="String" uniqueMembers="false" levelType="TimeMonths">
+        </Level>
+        <Level name="Dia de la semana" visible="true" column="dia_semana" type="String" uniqueMembers="false" levelType="TimeUndefined">
         </Level>
       </Hierarchy>
     </Dimension>
