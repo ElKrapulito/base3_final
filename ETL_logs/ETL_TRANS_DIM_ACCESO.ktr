@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>ETL_dim_asignaturas</name>
+    <name>ETL_TRANS_DIM_ACCESO</name>
     <description/>
     <extended_description/>
     <trans_version/>
@@ -427,9 +427,9 @@
     <clusterschemas>
     </clusterschemas>
     <created_user>-</created_user>
-    <created_date>2020/06/18 14:43:33.609</created_date>
+    <created_date>2020/06/23 05:00:26.253</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2020/06/18 14:43:33.609</modified_date>
+    <modified_date>2020/06/23 05:00:26.253</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -437,6 +437,57 @@
   </notepads>
   <connection>
     <name>conn_dw</name>
+    <server>localhost</server>
+    <type>POSTGRESQL</type>
+    <access>Native</access>
+    <database>dw_plataforma_3</database>
+    <port>5432</port>
+    <username>postgres</username>
+    <password>Encrypted 2be98afc86aa7f2e4cb79ce108fc0fc8e</password>
+    <servername/>
+    <data_tablespace/>
+    <index_tablespace/>
+    <attributes>
+      <attribute>
+        <code>FORCE_IDENTIFIERS_TO_LOWERCASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>FORCE_IDENTIFIERS_TO_UPPERCASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>IS_CLUSTERED</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>PORT_NUMBER</code>
+        <attribute>5432</attribute>
+      </attribute>
+      <attribute>
+        <code>PRESERVE_RESERVED_WORD_CASE</code>
+        <attribute>Y</attribute>
+      </attribute>
+      <attribute>
+        <code>QUOTE_ALL_FIELDS</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>SUPPORTS_BOOLEAN_DATA_TYPE</code>
+        <attribute>Y</attribute>
+      </attribute>
+      <attribute>
+        <code>SUPPORTS_TIMESTAMP_DATA_TYPE</code>
+        <attribute>Y</attribute>
+      </attribute>
+      <attribute>
+        <code>USE_POOLING</code>
+        <attribute>N</attribute>
+      </attribute>
+    </attributes>
+  </connection>
+  <connection>
+    <name>conn_u</name>
     <server>localhost</server>
     <type>MYSQL</type>
     <access>Native</access>
@@ -494,72 +545,16 @@
       </attribute>
     </attributes>
   </connection>
-  <connection>
-    <name>conn_dw_plataforma</name>
-    <server>localhost</server>
-    <type>POSTGRESQL</type>
-    <access>Native</access>
-    <database>dw_plataforma_3</database>
-    <port>5432</port>
-    <username>postgres</username>
-    <password>Encrypted 2be98afc86aa7f2e4cb79ce108fc0fc8e</password>
-    <servername/>
-    <data_tablespace/>
-    <index_tablespace/>
-    <attributes>
-      <attribute>
-        <code>FORCE_IDENTIFIERS_TO_LOWERCASE</code>
-        <attribute>N</attribute>
-      </attribute>
-      <attribute>
-        <code>FORCE_IDENTIFIERS_TO_UPPERCASE</code>
-        <attribute>N</attribute>
-      </attribute>
-      <attribute>
-        <code>IS_CLUSTERED</code>
-        <attribute>N</attribute>
-      </attribute>
-      <attribute>
-        <code>PORT_NUMBER</code>
-        <attribute>5432</attribute>
-      </attribute>
-      <attribute>
-        <code>PRESERVE_RESERVED_WORD_CASE</code>
-        <attribute>Y</attribute>
-      </attribute>
-      <attribute>
-        <code>QUOTE_ALL_FIELDS</code>
-        <attribute>N</attribute>
-      </attribute>
-      <attribute>
-        <code>SUPPORTS_BOOLEAN_DATA_TYPE</code>
-        <attribute>Y</attribute>
-      </attribute>
-      <attribute>
-        <code>SUPPORTS_TIMESTAMP_DATA_TYPE</code>
-        <attribute>Y</attribute>
-      </attribute>
-      <attribute>
-        <code>USE_POOLING</code>
-        <attribute>N</attribute>
-      </attribute>
-    </attributes>
-  </connection>
   <order>
     <hop>
       <from>Table input</from>
-      <to>Select values</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Select values</from>
-      <to>Table output</to>
+      <to>Insert / update</to>
       <enabled>Y</enabled>
     </hop>
   </order>
   <step>
-    <name>Select values</name>
-    <type>SelectValues</type>
+    <name>Insert / update</name>
+    <type>InsertUpdate</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -568,20 +563,24 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <fields>
-      <field>
-        <name>id</name>
-        <rename>id_asignatura_database</rename>
-      </field>
-      <field>
-        <name>name</name>
-        <rename>titulo</rename>
-      </field>
-      <field>
-        <name>grade</name>
-      </field>
-      <select_unspecified>N</select_unspecified>
-    </fields>
+    <connection>conn_dw</connection>
+    <commit>100000</commit>
+    <update_bypassed>Y</update_bypassed>
+    <lookup>
+      <schema>public</schema>
+      <table>dim_acceso</table>
+      <key>
+        <name>origin</name>
+        <field>origin</field>
+        <condition>=</condition>
+        <name2/>
+      </key>
+      <value>
+        <name>origin</name>
+        <rename>origin</rename>
+        <update>Y</update>
+      </value>
+    </lookup>
     <attributes/>
     <cluster_schema/>
     <remotesteps>
@@ -591,8 +590,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>400</xloc>
-      <yloc>128</yloc>
+      <xloc>416</xloc>
+      <yloc>272</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -607,9 +606,9 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>conn_dw</connection>
-    <sql>select ma.id,ma.name,ma.grade  from mdl_assign ma</sql>
-    <limit>0</limit>
+    <connection>conn_u</connection>
+    <sql>select origin from mdl_logstore_standard_log;</sql>
+    <limit>100000</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
     <variables_active>N</variables_active>
@@ -617,60 +616,14 @@
     <cached_row_meta_active>N</cached_row_meta_active>
     <row-meta>
       <value-meta>
-        <type>Integer</type>
-        <storagetype>normal</storagetype>
-        <name>id</name>
-        <length>15</length>
-        <precision>0</precision>
-        <origin>Table input</origin>
-        <comments>id</comments>
-        <conversion_Mask>####0;-####0</conversion_Mask>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>es_BO</date_format_locale>
-        <date_format_timezone>America/La_Paz</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
         <type>String</type>
         <storagetype>normal</storagetype>
-        <name>name</name>
-        <length>255</length>
+        <name>origin</name>
+        <length>10</length>
         <precision>-1</precision>
         <origin>Table input</origin>
-        <comments>name</comments>
+        <comments>origin</comments>
         <conversion_Mask/>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>es_BO</date_format_locale>
-        <date_format_timezone>America/La_Paz</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>Integer</type>
-        <storagetype>normal</storagetype>
-        <name>grade</name>
-        <length>15</length>
-        <precision>0</precision>
-        <origin>Table input</origin>
-        <comments>grade</comments>
-        <conversion_Mask>####0;-####0</conversion_Mask>
         <decimal_symbol>,</decimal_symbol>
         <grouping_symbol>.</grouping_symbol>
         <currency_symbol/>
@@ -695,64 +648,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>240</xloc>
-      <yloc>128</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Table output</name>
-    <type>TableOutput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>conn_dw_plataforma</connection>
-    <schema>public</schema>
-    <table>dim_asignatura</table>
-    <commit>100000</commit>
-    <truncate>N</truncate>
-    <ignore_errors>N</ignore_errors>
-    <use_batch>Y</use_batch>
-    <specify_fields>Y</specify_fields>
-    <partitioning_enabled>N</partitioning_enabled>
-    <partitioning_field/>
-    <partitioning_daily>N</partitioning_daily>
-    <partitioning_monthly>Y</partitioning_monthly>
-    <tablename_in_field>N</tablename_in_field>
-    <tablename_field/>
-    <tablename_in_table>Y</tablename_in_table>
-    <return_keys>N</return_keys>
-    <return_field/>
-    <fields>
-      <field>
-        <column_name>id_asignatura_database</column_name>
-        <stream_name>id_asignatura_database</stream_name>
-      </field>
-      <field>
-        <column_name>titulo</column_name>
-        <stream_name>titulo</stream_name>
-      </field>
-      <field>
-        <column_name>grade</column_name>
-        <stream_name>grade</stream_name>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>544</xloc>
-      <yloc>128</yloc>
+      <xloc>128</xloc>
+      <yloc>272</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

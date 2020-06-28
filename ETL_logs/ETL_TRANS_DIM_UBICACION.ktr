@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>ETL_dim_fecha</name>
+    <name>ETL_TRANS_DIM_UBICACION</name>
     <description/>
     <extended_description/>
     <trans_version/>
     <trans_type>Normal</trans_type>
-    <trans_status>0</trans_status>
     <directory>/</directory>
     <parameters>
     </parameters>
@@ -408,7 +407,7 @@
       <offset>0.0</offset>
       <maxdiff>0.0</maxdiff>
     </maxdate>
-    <size_rowset>1000000</size_rowset>
+    <size_rowset>10000</size_rowset>
     <sleep_time_empty>50</sleep_time_empty>
     <sleep_time_full>50</sleep_time_full>
     <unique_connections>N</unique_connections>
@@ -428,16 +427,67 @@
     <clusterschemas>
     </clusterschemas>
     <created_user>-</created_user>
-    <created_date>2020/06/18 04:10:07.934</created_date>
+    <created_date>2020/06/23 02:26:30.130</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2020/06/18 04:10:07.934</modified_date>
+    <modified_date>2020/06/23 02:26:30.130</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
   </notepads>
   <connection>
-    <name>conn</name>
+    <name>conn_dw</name>
+    <server>localhost</server>
+    <type>POSTGRESQL</type>
+    <access>Native</access>
+    <database>dw_plataforma_3</database>
+    <port>5432</port>
+    <username>postgres</username>
+    <password>Encrypted 2be98afc86aa7f2e4cb79ce108fc0fc8e</password>
+    <servername/>
+    <data_tablespace/>
+    <index_tablespace/>
+    <attributes>
+      <attribute>
+        <code>FORCE_IDENTIFIERS_TO_LOWERCASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>FORCE_IDENTIFIERS_TO_UPPERCASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>IS_CLUSTERED</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>PORT_NUMBER</code>
+        <attribute>5432</attribute>
+      </attribute>
+      <attribute>
+        <code>PRESERVE_RESERVED_WORD_CASE</code>
+        <attribute>Y</attribute>
+      </attribute>
+      <attribute>
+        <code>QUOTE_ALL_FIELDS</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>SUPPORTS_BOOLEAN_DATA_TYPE</code>
+        <attribute>Y</attribute>
+      </attribute>
+      <attribute>
+        <code>SUPPORTS_TIMESTAMP_DATA_TYPE</code>
+        <attribute>Y</attribute>
+      </attribute>
+      <attribute>
+        <code>USE_POOLING</code>
+        <attribute>N</attribute>
+      </attribute>
+    </attributes>
+  </connection>
+  <connection>
+    <name>conn_u</name>
     <server>localhost</server>
     <type>MYSQL</type>
     <access>Native</access>
@@ -495,107 +545,36 @@
       </attribute>
     </attributes>
   </connection>
-  <connection>
-    <name>conn_dw</name>
-    <server>localhost</server>
-    <type>POSTGRESQL</type>
-    <access>Native</access>
-    <database>dw_plataforma_3</database>
-    <port>5432</port>
-    <username>postgres</username>
-    <password>Encrypted 2be98afc86aa7f2e4cb79ce108fc0fc8e</password>
-    <servername/>
-    <data_tablespace/>
-    <index_tablespace/>
-    <attributes>
-      <attribute>
-        <code>FORCE_IDENTIFIERS_TO_LOWERCASE</code>
-        <attribute>N</attribute>
-      </attribute>
-      <attribute>
-        <code>FORCE_IDENTIFIERS_TO_UPPERCASE</code>
-        <attribute>N</attribute>
-      </attribute>
-      <attribute>
-        <code>IS_CLUSTERED</code>
-        <attribute>N</attribute>
-      </attribute>
-      <attribute>
-        <code>PORT_NUMBER</code>
-        <attribute>5432</attribute>
-      </attribute>
-      <attribute>
-        <code>PRESERVE_RESERVED_WORD_CASE</code>
-        <attribute>Y</attribute>
-      </attribute>
-      <attribute>
-        <code>QUOTE_ALL_FIELDS</code>
-        <attribute>N</attribute>
-      </attribute>
-      <attribute>
-        <code>SUPPORTS_BOOLEAN_DATA_TYPE</code>
-        <attribute>Y</attribute>
-      </attribute>
-      <attribute>
-        <code>SUPPORTS_TIMESTAMP_DATA_TYPE</code>
-        <attribute>Y</attribute>
-      </attribute>
-      <attribute>
-        <code>USE_POOLING</code>
-        <attribute>N</attribute>
-      </attribute>
-    </attributes>
-  </connection>
   <order>
     <hop>
-      <from>Obtener fechas</from>
-      <to>Select values</to>
+      <from>Select</from>
+      <to>Split fields</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Select values</from>
-      <to>Sort rows</to>
+      <from>Table input</from>
+      <to>Select</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Sort rows</from>
-      <to>Unique rows</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Unique rows</from>
-      <to>Filter rows</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Filter rows</from>
-      <to>Select values 2</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Select values 2</from>
-      <to>fecha cut</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>fecha cut</from>
-      <to>Select values 3</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Select values 3</from>
+      <from>Split fields</from>
       <to>Modified JavaScript value</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
       <from>Modified JavaScript value</from>
-      <to>Table output</to>
+      <to>Select 2</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Select 2</from>
+      <to>Insert / update</to>
       <enabled>Y</enabled>
     </hop>
   </order>
   <step>
-    <name>Filter rows</name>
-    <type>FilterRows</type>
+    <name>Insert / update</name>
+    <type>InsertUpdate</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -604,16 +583,68 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <send_true_to/>
-    <send_false_to/>
-    <compare>
-      <condition>
-        <negated>N</negated>
-        <leftvalue>fechas</leftvalue>
-        <function>IS NOT NULL</function>
-        <rightvalue/>
-      </condition>
-    </compare>
+    <connection>conn_dw</connection>
+    <commit>100000</commit>
+    <update_bypassed>Y</update_bypassed>
+    <lookup>
+      <schema>public</schema>
+      <table>dim_ubicacion</table>
+      <key>
+        <name>ip</name>
+        <field>ip</field>
+        <condition>=</condition>
+        <name2/>
+      </key>
+      <key>
+        <name>ip_a</name>
+        <field>ip_a</field>
+        <condition>=</condition>
+        <name2/>
+      </key>
+      <key>
+        <name>ip_b</name>
+        <field>ip_b</field>
+        <condition>=</condition>
+        <name2/>
+      </key>
+      <key>
+        <name>ip_c</name>
+        <field>ip_c</field>
+        <condition>=</condition>
+        <name2/>
+      </key>
+      <key>
+        <name>ip_d</name>
+        <field>ip_d</field>
+        <condition>=</condition>
+        <name2/>
+      </key>
+      <value>
+        <name>ip</name>
+        <rename>ip</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>ip_a</name>
+        <rename>ip_a</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>ip_b</name>
+        <rename>ip_b</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>ip_c</name>
+        <rename>ip_c</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>ip_d</name>
+        <rename>ip_d</rename>
+        <update>Y</update>
+      </value>
+    </lookup>
     <attributes/>
     <cluster_schema/>
     <remotesteps>
@@ -623,8 +654,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>560</xloc>
-      <yloc>192</yloc>
+      <xloc>768</xloc>
+      <yloc>272</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -645,53 +676,56 @@
       <jsScript>
         <jsScript_type>0</jsScript_type>
         <jsScript_name>Script 1</jsScript_name>
-        <jsScript_script>var dia_semana = "";
-
-if(dow == 1){
-	dia_semana="Domingo";
-}else if(dow == 2){
-	dia_semana="Lunes";
-}else if(dow == 3){
-	dia_semana="Martes";
-}else if(dow == 4){
-	dia_semana="Miercoles";
-}else if(dow == 5){
-	dia_semana="Jueves";
-}else if(dow == 6){
-	dia_semana="Viernes";
-}else if(dow == 7){
-	dia_semana="Sabado";
+        <jsScript_script>//Script here
+if(ip.substring(4,5)==":"){
+	ip_a = 0;
+	ip_b = 0;
+	ip_c = 0;
+	ip_d = 0;
 }
-var horario = "";
-if(hora >= 0 &amp;&amp; hora &lt;= 5){
-	horario = "Madrugada"
-} else if(hora > 5 &amp;&amp; hora &lt;= 11){
-	horario = "Mañana";
-} else if(hora > 11 &amp;&amp; hora &lt;= 18){
-	horario = "Tarde";
-} else if (hora > 18 &amp;&amp; hora &lt;= 23){
-	horario = "Noche";
-}
-
 </jsScript_script>
       </jsScript>
     </jsScripts>
     <fields>
       <field>
-        <name>dia_semana</name>
-        <rename>dia_semana</rename>
+        <name>ip</name>
+        <rename>ip</rename>
         <type>String</type>
         <length>-1</length>
         <precision>-1</precision>
-        <replace>N</replace>
+        <replace>Y</replace>
       </field>
       <field>
-        <name>horario</name>
-        <rename>horario</rename>
+        <name>ip_a</name>
+        <rename>ip_a</rename>
         <type>String</type>
         <length>-1</length>
         <precision>-1</precision>
-        <replace>N</replace>
+        <replace>Y</replace>
+      </field>
+      <field>
+        <name>ip_b</name>
+        <rename>ip_b</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>Y</replace>
+      </field>
+      <field>
+        <name>ip_c</name>
+        <rename>ip_c</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>Y</replace>
+      </field>
+      <field>
+        <name>ip_d</name>
+        <rename>ip_d</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>Y</replace>
       </field>
     </fields>
     <attributes/>
@@ -703,13 +737,266 @@ if(hora >= 0 &amp;&amp; hora &lt;= 5){
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1024</xloc>
-      <yloc>192</yloc>
+      <xloc>544</xloc>
+      <yloc>272</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Obtener fechas</name>
+    <name>Select</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>ip</name>
+      </field>
+      <field>
+        <name>ip</name>
+        <rename>ip_sucia</rename>
+      </field>
+      <select_unspecified>N</select_unspecified>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>288</xloc>
+      <yloc>272</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Select 2</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>ip</name>
+      </field>
+      <field>
+        <name>ip_a</name>
+      </field>
+      <field>
+        <name>ip_b</name>
+      </field>
+      <field>
+        <name>ip_c</name>
+      </field>
+      <field>
+        <name>ip_d</name>
+      </field>
+      <select_unspecified>N</select_unspecified>
+      <meta>
+        <name>ip</name>
+        <rename>ip</rename>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>ip_a</name>
+        <rename>ip_a</rename>
+        <type>Integer</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>ip_b</name>
+        <rename>ip_b</rename>
+        <type>Integer</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>ip_c</name>
+        <rename>ip_c</rename>
+        <type>Integer</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>ip_d</name>
+        <rename>ip_d</rename>
+        <type>Integer</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>656</xloc>
+      <yloc>272</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Split fields</name>
+    <type>FieldSplitter</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <splitfield>ip_sucia</splitfield>
+    <delimiter>.</delimiter>
+    <enclosure/>
+    <fields>
+      <field>
+        <name>ip_a</name>
+        <id/>
+        <idrem>N</idrem>
+        <type>String</type>
+        <format/>
+        <group/>
+        <decimal/>
+        <currency/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <nullif/>
+        <ifnull/>
+        <trimtype>left</trimtype>
+      </field>
+      <field>
+        <name>ip_b</name>
+        <id/>
+        <idrem>N</idrem>
+        <type>String</type>
+        <format/>
+        <group/>
+        <decimal/>
+        <currency/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <nullif/>
+        <ifnull/>
+        <trimtype>left</trimtype>
+      </field>
+      <field>
+        <name>ip_c</name>
+        <id/>
+        <idrem>N</idrem>
+        <type>String</type>
+        <format/>
+        <group/>
+        <decimal/>
+        <currency/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <nullif/>
+        <ifnull/>
+        <trimtype>left</trimtype>
+      </field>
+      <field>
+        <name>ip_d</name>
+        <id/>
+        <idrem>N</idrem>
+        <type>String</type>
+        <format/>
+        <group/>
+        <decimal/>
+        <currency/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <nullif/>
+        <ifnull/>
+        <trimtype>left</trimtype>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>416</xloc>
+      <yloc>272</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Table input</name>
     <type>TableInput</type>
     <description/>
     <distribute>Y</distribute>
@@ -719,21 +1006,9 @@ if(hora >= 0 &amp;&amp; hora &lt;= 5){
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>conn</connection>
-    <sql>-- mdl_course (startdate, enddate)
--- mdl_assign (duedate, allowsubmissionsfromdate,cutoffdate,  gradingduedate)
-	select distinct t.fecha, DAYOFWEEK(t.fecha) from (SELECT from_unixtime(startdate) as fecha from mdl_course
-	UNION
-	SELECT from_unixtime(enddate)  from mdl_course
-	UNION
-	SELECT from_unixtime(duedate) from mdl_assign
-	UNION
-	SELECT from_unixtime(allowsubmissionsfromdate) from mdl_assign
-	UNION
-	SELECT from_unixtime(cutoffdate) from mdl_assign
-	UNION
-	SELECT from_unixtime(gradingduedate) from mdl_assign) as t order by t.fecha</sql>
-    <limit>0</limit>
+    <connection>conn_u</connection>
+    <sql>select ip from mdl_logstore_standard_log;</sql>
+    <limit>100000</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
     <variables_active>N</variables_active>
@@ -741,37 +1016,14 @@ if(hora >= 0 &amp;&amp; hora &lt;= 5){
     <cached_row_meta_active>N</cached_row_meta_active>
     <row-meta>
       <value-meta>
-        <type>Timestamp</type>
+        <type>String</type>
         <storagetype>normal</storagetype>
-        <name>fecha</name>
-        <length>0</length>
+        <name>ip</name>
+        <length>45</length>
         <precision>-1</precision>
-        <origin>Obtener fechas</origin>
-        <comments>fecha</comments>
+        <origin>Table input</origin>
+        <comments>ip</comments>
         <conversion_Mask/>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>es_BO</date_format_locale>
-        <date_format_timezone>America/La_Paz</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>Integer</type>
-        <storagetype>normal</storagetype>
-        <name>DAYOFWEEK(t.fecha)</name>
-        <length>9</length>
-        <precision>0</precision>
-        <origin>Obtener fechas</origin>
-        <comments>DAYOFWEEK(t.fecha)</comments>
-        <conversion_Mask>####0;-####0</conversion_Mask>
         <decimal_symbol>,</decimal_symbol>
         <grouping_symbol>.</grouping_symbol>
         <currency_symbol/>
@@ -796,438 +1048,8 @@ if(hora >= 0 &amp;&amp; hora &lt;= 5){
       </output>
     </remotesteps>
     <GUI>
-      <xloc>112</xloc>
-      <yloc>192</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Select values</name>
-    <type>SelectValues</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <name>fecha</name>
-        <rename>fechas</rename>
-      </field>
-      <field>
-        <name>DAYOFWEEK(t.fecha)</name>
-        <rename>dow</rename>
-      </field>
-      <select_unspecified>N</select_unspecified>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>224</xloc>
-      <yloc>192</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Select values 2</name>
-    <type>SelectValues</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <select_unspecified>N</select_unspecified>
-      <meta>
-        <name>fechas</name>
-        <rename>fechas</rename>
-        <type>String</type>
-        <length>0</length>
-        <precision>-2</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>
-      <meta>
-        <name>dow</name>
-        <rename>dow</rename>
-        <type>Integer</type>
-        <length>9</length>
-        <precision>0</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>672</xloc>
-      <yloc>192</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Select values 3</name>
-    <type>SelectValues</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <select_unspecified>N</select_unspecified>
-      <meta>
-        <name>anio</name>
-        <rename>anio</rename>
-        <type>Integer</type>
-        <length>100</length>
-        <precision>-2</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>
-      <meta>
-        <name>mes</name>
-        <rename>mes</rename>
-        <type>Integer</type>
-        <length>100</length>
-        <precision>-2</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>
-      <meta>
-        <name>dia</name>
-        <rename>dia</rename>
-        <type>Integer</type>
-        <length>100</length>
-        <precision>-2</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>
-      <meta>
-        <name>hora</name>
-        <rename>hora</rename>
-        <type>Integer</type>
-        <length>100</length>
-        <precision>-2</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>
-      <meta>
-        <name>minuto</name>
-        <rename>minuto</rename>
-        <type>Integer</type>
-        <length>100</length>
-        <precision>-2</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>
-      <meta>
-        <name>dow</name>
-        <rename>dow</rename>
-        <type>Integer</type>
-        <length>3</length>
-        <precision>-2</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>896</xloc>
-      <yloc>192</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Sort rows</name>
-    <type>SortRows</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <directory>%%java.io.tmpdir%%</directory>
-    <prefix>out</prefix>
-    <sort_size>1000000</sort_size>
-    <free_memory/>
-    <compress>N</compress>
-    <compress_variable/>
-    <unique_rows>N</unique_rows>
-    <fields>
-      <field>
-        <name>fechas</name>
-        <ascending>Y</ascending>
-        <case_sensitive>N</case_sensitive>
-        <collator_enabled>N</collator_enabled>
-        <collator_strength>0</collator_strength>
-        <presorted>N</presorted>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>352</xloc>
-      <yloc>192</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Table output</name>
-    <type>TableOutput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>conn_dw</connection>
-    <schema>public</schema>
-    <table>dim_fecha</table>
-    <commit>1000000</commit>
-    <truncate>N</truncate>
-    <ignore_errors>N</ignore_errors>
-    <use_batch>Y</use_batch>
-    <specify_fields>Y</specify_fields>
-    <partitioning_enabled>N</partitioning_enabled>
-    <partitioning_field/>
-    <partitioning_daily>N</partitioning_daily>
-    <partitioning_monthly>Y</partitioning_monthly>
-    <tablename_in_field>N</tablename_in_field>
-    <tablename_field/>
-    <tablename_in_table>Y</tablename_in_table>
-    <return_keys>N</return_keys>
-    <return_field/>
-    <fields>
-      <field>
-        <column_name>anio</column_name>
-        <stream_name>anio</stream_name>
-      </field>
-      <field>
-        <column_name>mes</column_name>
-        <stream_name>mes</stream_name>
-      </field>
-      <field>
-        <column_name>dia</column_name>
-        <stream_name>dia</stream_name>
-      </field>
-      <field>
-        <column_name>hora</column_name>
-        <stream_name>hora</stream_name>
-      </field>
-      <field>
-        <column_name>minuto</column_name>
-        <stream_name>minuto</stream_name>
-      </field>
-      <field>
-        <column_name>dia_semana</column_name>
-        <stream_name>dia_semana</stream_name>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>1152</xloc>
-      <yloc>192</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Unique rows</name>
-    <type>Unique</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <count_rows>N</count_rows>
-    <count_field/>
-    <reject_duplicate_row>N</reject_duplicate_row>
-    <error_description/>
-    <fields>
-      <field>
-        <name>fechas</name>
-        <case_insensitive>N</case_insensitive>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>464</xloc>
-      <yloc>192</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>fecha cut</name>
-    <type>StringCut</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <in_stream_name>fechas</in_stream_name>
-        <out_stream_name>anio</out_stream_name>
-        <cut_from>0</cut_from>
-        <cut_to>4</cut_to>
-      </field>
-      <field>
-        <in_stream_name>fechas</in_stream_name>
-        <out_stream_name>mes</out_stream_name>
-        <cut_from>5</cut_from>
-        <cut_to>7</cut_to>
-      </field>
-      <field>
-        <in_stream_name>fechas</in_stream_name>
-        <out_stream_name>dia</out_stream_name>
-        <cut_from>8</cut_from>
-        <cut_to>10</cut_to>
-      </field>
-      <field>
-        <in_stream_name>fechas</in_stream_name>
-        <out_stream_name>hora</out_stream_name>
-        <cut_from>11</cut_from>
-        <cut_to>13</cut_to>
-      </field>
-      <field>
-        <in_stream_name>fechas</in_stream_name>
-        <out_stream_name>minuto</out_stream_name>
-        <cut_from>14</cut_from>
-        <cut_to>16</cut_to>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>784</xloc>
-      <yloc>192</yloc>
+      <xloc>176</xloc>
+      <yloc>272</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

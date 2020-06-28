@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>ETL_hecho_entrega</name>
+    <name>ETL_HECHO</name>
     <description/>
     <extended_description/>
     <trans_version/>
@@ -427,9 +427,9 @@
     <clusterschemas>
     </clusterschemas>
     <created_user>-</created_user>
-    <created_date>2020/06/24 01:23:32.909</created_date>
+    <created_date>2020/06/23 16:51:54.515</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2020/06/24 01:23:32.909</modified_date>
+    <modified_date>2020/06/23 16:51:54.515</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -547,124 +547,99 @@
   </connection>
   <order>
     <hop>
-      <from>Table input</from>
-      <to>look_up_alumno</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>look_up_alumno</from>
-      <to>Select values</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>Select values</from>
-      <to>look_up_curso</to>
+      <to>Split fields</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>look_up_curso</from>
+      <from>Split fields</from>
+      <to>Split fields 2</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Split fields 2</from>
+      <to>Split fields 3</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Split fields 3</from>
+      <to>Strings cut</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Strings cut</from>
       <to>Select values 2</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Select values 2</from>
-      <to>look_up_asignatura</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>look_up_asignatura</from>
-      <to>Select values 3</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>Select values 3</from>
-      <to>fecha cut</to>
+      <to>look-up-acceso</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>look-up-acceso</from>
+      <to>look-up-ubicacion</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>look-up-ubicacion</from>
+      <to>look-up-curso</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>look-up-curso</from>
+      <to>look-up-usuario</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>look-up-usuario</from>
+      <to>Select values 4</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>look-up-accion</from>
+      <to>Select values</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Table input</from>
+      <to>Select values 5</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
       <from>Select values 5</from>
-      <to>fecha cut 3</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Add constants</from>
-      <to>Table output</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>fecha cut</from>
-      <to>Select values 7</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>fecha cut 2</from>
-      <to>Select values 8</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>fecha cut 3</from>
-      <to>Select values 9</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Select values 7</from>
       <to>Modified JavaScript value</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
       <from>Modified JavaScript value</from>
-      <to>look_up_fecha_de_entrega</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>look_up_fecha_de_entrega</from>
-      <to>Select values 4</to>
+      <to>look-up-accion</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
       <from>Select values 4</from>
-      <to>fecha cut 2</to>
+      <to>Table output</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Select values 8</from>
+      <from>Select values 2</from>
       <to>Modified JavaScript value 2</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
       <from>Modified JavaScript value 2</from>
-      <to>look_up_fecha_cierre</to>
+      <to>Look-u Fecha</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>look_up_fecha_cierre</from>
-      <to>Select values 5</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Select values 9</from>
-      <to>Modified JavaScript value 3</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Modified JavaScript value 3</from>
-      <to>look_up_fecha_subida</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>look_up_fecha_subida</from>
-      <to>Select values 6</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Select values 6</from>
-      <to>Add constants</to>
+      <from>Look-u Fecha</from>
+      <to>Select values 3</to>
       <enabled>Y</enabled>
     </hop>
   </order>
   <step>
-    <name>Add constants</name>
-    <type>Constant</type>
+    <name>Look-u Fecha</name>
+    <type>CombinationLookup</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -673,20 +648,48 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
+    <schema>public</schema>
+    <table>dim_fecha</table>
+    <connection>conn_dw</connection>
+    <commit>1000000</commit>
+    <cache_size>9999</cache_size>
+    <replace>N</replace>
+    <preloadCache>N</preloadCache>
+    <crc>N</crc>
+    <crcfield>hashcode</crcfield>
     <fields>
-      <field>
-        <name>hecho_entrega</name>
-        <type>Integer</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif>1</nullif>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
+      <key>
+        <name>año</name>
+        <lookup>anio</lookup>
+      </key>
+      <key>
+        <name>mes</name>
+        <lookup>mes</lookup>
+      </key>
+      <key>
+        <name>dia</name>
+        <lookup>dia</lookup>
+      </key>
+      <key>
+        <name>hora</name>
+        <lookup>hora</lookup>
+      </key>
+      <key>
+        <name>minuto</name>
+        <lookup>minuto</lookup>
+      </key>
+      <key>
+        <name>dia_semana</name>
+        <lookup>dia_semana</lookup>
+      </key>
+      <return>
+        <name>id_fecha</name>
+        <creation_method>tablemax</creation_method>
+        <use_autoinc>N</use_autoinc>
+      </return>
     </fields>
+    <sequence/>
+    <last_update_field/>
     <attributes/>
     <cluster_schema/>
     <remotesteps>
@@ -696,8 +699,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>192</xloc>
-      <yloc>336</yloc>
+      <xloc>1296</xloc>
+      <yloc>352</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -718,49 +721,29 @@
       <jsScript>
         <jsScript_type>0</jsScript_type>
         <jsScript_name>Script 1</jsScript_name>
-        <jsScript_script>var dia_semana = "";
-var dow = dow_fecha_de_entrega;
-if(dow == 1){
-	dia_semana="Domingo";
-}else if(dow == 2){
-	dia_semana="Lunes";
-}else if(dow == 3){
-	dia_semana="Martes";
-}else if(dow == 4){
-	dia_semana="Miercoles";
-}else if(dow == 5){
-	dia_semana="Jueves";
-}else if(dow == 6){
-	dia_semana="Viernes";
-}else if(dow == 7){
-	dia_semana="Sabado";
-}
-var horario = "";
-if(hora >= 0 &amp;&amp; hora &lt;= 5){
-	horario = "Madrugada"
-} else if(hora > 5 &amp;&amp; hora &lt;= 11){
-	horario = "Mañana";
-} else if(hora > 11 &amp;&amp; hora &lt;= 18){
-	horario = "Tarde";
-} else if (hora > 18 &amp;&amp; hora &lt;= 23){
-	horario = "Noche";
+        <jsScript_script>//Script here
+var cantidad_visitas = 0;
+var cantidad_acciones = 1;
+if(action=='loggedin'){
+	cantidad_visitas = 1;
+	cantidad_acciones = 0;
 }
 </jsScript_script>
       </jsScript>
     </jsScripts>
     <fields>
       <field>
-        <name>dia_semana</name>
-        <rename>dia_semana</rename>
-        <type>String</type>
+        <name>cantidad_visitas</name>
+        <rename>cantidad_visitas</rename>
+        <type>Integer</type>
         <length>-1</length>
         <precision>-1</precision>
         <replace>N</replace>
       </field>
       <field>
-        <name>horario</name>
-        <rename>horario</rename>
-        <type>String</type>
+        <name>cantidad_acciones</name>
+        <rename>cantidad_acciones</rename>
+        <type>Integer</type>
         <length>-1</length>
         <precision>-1</precision>
         <replace>N</replace>
@@ -775,8 +758,8 @@ if(hora >= 0 &amp;&amp; hora &lt;= 5){
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1120</xloc>
-      <yloc>224</yloc>
+      <xloc>272</xloc>
+      <yloc>176</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -798,7 +781,7 @@ if(hora >= 0 &amp;&amp; hora &lt;= 5){
         <jsScript_type>0</jsScript_type>
         <jsScript_name>Script 1</jsScript_name>
         <jsScript_script>var dia_semana = "";
-var dow = dow_fecha_cierre;
+var dow = dow;
 if(dow == 1){
 	dia_semana="Domingo";
 }else if(dow == 2){
@@ -823,8 +806,7 @@ if(hora >= 0 &amp;&amp; hora &lt;= 5){
 	horario = "Tarde";
 } else if (hora > 18 &amp;&amp; hora &lt;= 23){
 	horario = "Noche";
-}
-</jsScript_script>
+}</jsScript_script>
       </jsScript>
     </jsScripts>
     <fields>
@@ -854,88 +836,8 @@ if(hora >= 0 &amp;&amp; hora &lt;= 5){
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1120</xloc>
-      <yloc>336</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Modified JavaScript value 3</name>
-    <type>ScriptValueMod</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <compatible>N</compatible>
-    <optimizationLevel>9</optimizationLevel>
-    <jsScripts>
-      <jsScript>
-        <jsScript_type>0</jsScript_type>
-        <jsScript_name>Script 1</jsScript_name>
-        <jsScript_script>var dia_semana = "";
-var dow = dow_fecha_subida;
-if(dow == 1){
-	dia_semana="Domingo";
-}else if(dow == 2){
-	dia_semana="Lunes";
-}else if(dow == 3){
-	dia_semana="Martes";
-}else if(dow == 4){
-	dia_semana="Miercoles";
-}else if(dow == 5){
-	dia_semana="Jueves";
-}else if(dow == 6){
-	dia_semana="Viernes";
-}else if(dow == 7){
-	dia_semana="Sabado";
-}
-var horario = "";
-if(hora >= 0 &amp;&amp; hora &lt;= 5){
-	horario = "Madrugada"
-} else if(hora > 5 &amp;&amp; hora &lt;= 11){
-	horario = "Mañana";
-} else if(hora > 11 &amp;&amp; hora &lt;= 18){
-	horario = "Tarde";
-} else if (hora > 18 &amp;&amp; hora &lt;= 23){
-	horario = "Noche";
-}
-
-</jsScript_script>
-      </jsScript>
-    </jsScripts>
-    <fields>
-      <field>
-        <name>dia_semana</name>
-        <rename>dia_semana</rename>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <replace>N</replace>
-      </field>
-      <field>
-        <name>horario</name>
-        <rename>horario</rename>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <replace>N</replace>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>544</xloc>
-      <yloc>336</yloc>
+      <xloc>1296</xloc>
+      <yloc>272</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -952,34 +854,68 @@ if(hora >= 0 &amp;&amp; hora &lt;= 5){
     </partitioning>
     <fields>
       <field>
-        <name>curso</name>
+        <name>component</name>
       </field>
       <field>
-        <name>asignatura</name>
+        <name>action</name>
       </field>
       <field>
-        <name>fecha_de_entrega</name>
+        <name>target</name>
       </field>
       <field>
-        <name>fecha_cierre</name>
+        <name>userid</name>
       </field>
       <field>
-        <name>fecha_subida</name>
+        <name>courseid</name>
       </field>
       <field>
-        <name>id_usuario</name>
-        <rename>id_alumno</rename>
+        <name>tiempo</name>
       </field>
       <field>
-        <name>dow_fecha_de_entrega</name>
+        <name>origin</name>
       </field>
       <field>
-        <name>dow_fecha_cierre</name>
+        <name>ip</name>
       </field>
       <field>
-        <name>dow_fecha_subida</name>
+        <name>cantidad_visitas</name>
+      </field>
+      <field>
+        <name>cantidad_acciones</name>
+      </field>
+      <field>
+        <name>id_accion</name>
+      </field>
+      <field>
+        <name>dow</name>
       </field>
       <select_unspecified>N</select_unspecified>
+      <remove>
+        <name>component</name>
+      </remove>
+      <remove>
+        <name>action</name>
+      </remove>
+      <remove>
+        <name>target</name>
+      </remove>
+      <meta>
+        <name>tiempo</name>
+        <rename>tiempo</rename>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
     </fields>
     <attributes/>
     <cluster_schema/>
@@ -990,8 +926,8 @@ if(hora >= 0 &amp;&amp; hora &lt;= 5){
       </output>
     </remotesteps>
     <GUI>
-      <xloc>288</xloc>
-      <yloc>224</yloc>
+      <xloc>560</xloc>
+      <yloc>176</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1008,33 +944,252 @@ if(hora >= 0 &amp;&amp; hora &lt;= 5){
     </partitioning>
     <fields>
       <field>
-        <name>asignatura</name>
+        <name>userid</name>
       </field>
       <field>
-        <name>fecha_de_entrega</name>
+        <name>courseid</name>
       </field>
       <field>
-        <name>fecha_cierre</name>
+        <name>año</name>
       </field>
       <field>
-        <name>fecha_subida</name>
+        <name>mes</name>
       </field>
       <field>
-        <name>id_alumno</name>
+        <name>dia</name>
       </field>
       <field>
-        <name>id_curso</name>
+        <name>hora</name>
       </field>
       <field>
-        <name>dow_fecha_de_entrega</name>
+        <name>minuto</name>
       </field>
       <field>
-        <name>dow_fecha_cierre</name>
+        <name>segundo</name>
       </field>
       <field>
-        <name>dow_fecha_subida</name>
+        <name>origin</name>
+      </field>
+      <field>
+        <name>ip</name>
+      </field>
+      <field>
+        <name>cantidad_visitas</name>
+      </field>
+      <field>
+        <name>cantidad_acciones</name>
+      </field>
+      <field>
+        <name>id_accion</name>
+      </field>
+      <field>
+        <name>dow</name>
       </field>
       <select_unspecified>N</select_unspecified>
+      <meta>
+        <name>userid</name>
+        <rename>userid</rename>
+        <type>Integer</type>
+        <length>15</length>
+        <precision>0</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>courseid</name>
+        <rename>courseid</rename>
+        <type>Integer</type>
+        <length>15</length>
+        <precision>0</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>año</name>
+        <rename>año</rename>
+        <type>Integer</type>
+        <length>-2</length>
+        <precision>0</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>mes</name>
+        <rename>mes</rename>
+        <type>Integer</type>
+        <length>-2</length>
+        <precision>0</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>dia</name>
+        <rename>dia</rename>
+        <type>Integer</type>
+        <length>-2</length>
+        <precision>0</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>hora</name>
+        <rename>hora</rename>
+        <type>Integer</type>
+        <length>-2</length>
+        <precision>0</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>minuto</name>
+        <rename>minuto</rename>
+        <type>Integer</type>
+        <length>-2</length>
+        <precision>0</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>segundo</name>
+        <rename>segundo</rename>
+        <type>Integer</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>origin</name>
+        <rename>origin</rename>
+        <type>String</type>
+        <length>10</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>ip</name>
+        <rename>ip</rename>
+        <type>String</type>
+        <length>45</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>id_accion</name>
+        <rename>id_accion</rename>
+        <type>Integer</type>
+        <length>10</length>
+        <precision>0</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>dow</name>
+        <rename>dow</rename>
+        <type>Integer</type>
+        <length>15</length>
+        <precision>0</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
     </fields>
     <attributes/>
     <cluster_schema/>
@@ -1045,8 +1200,8 @@ if(hora >= 0 &amp;&amp; hora &lt;= 5){
       </output>
     </remotesteps>
     <GUI>
-      <xloc>544</xloc>
-      <yloc>224</yloc>
+      <xloc>1296</xloc>
+      <yloc>176</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1062,160 +1217,31 @@ if(hora >= 0 &amp;&amp; hora &lt;= 5){
       <schema_name/>
     </partitioning>
     <fields>
+      <field>
+        <name>userid</name>
+      </field>
+      <field>
+        <name>courseid</name>
+      </field>
+      <field>
+        <name>origin</name>
+      </field>
+      <field>
+        <name>ip</name>
+      </field>
+      <field>
+        <name>cantidad_visitas</name>
+      </field>
+      <field>
+        <name>cantidad_acciones</name>
+      </field>
+      <field>
+        <name>id_accion</name>
+      </field>
+      <field>
+        <name>id_fecha</name>
+      </field>
       <select_unspecified>N</select_unspecified>
-      <meta>
-        <name>fecha_de_entrega</name>
-        <rename>fecha_de_entrega</rename>
-        <type>String</type>
-        <length>0</length>
-        <precision>-2</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>
-      <meta>
-        <name>fecha_cierre</name>
-        <rename>fecha_cierre</rename>
-        <type>String</type>
-        <length>0</length>
-        <precision>-2</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>
-      <meta>
-        <name>fecha_subida</name>
-        <rename>fecha_subida</rename>
-        <type>String</type>
-        <length>0</length>
-        <precision>-2</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>
-      <meta>
-        <name>id_alumno</name>
-        <rename>id_alumno</rename>
-        <type>Integer</type>
-        <length>10</length>
-        <precision>0</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>
-      <meta>
-        <name>id_curso</name>
-        <rename>id_curso</rename>
-        <type>Integer</type>
-        <length>10</length>
-        <precision>0</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>
-      <meta>
-        <name>id_asignatura</name>
-        <rename>id_asignatura</rename>
-        <type>Integer</type>
-        <length>10</length>
-        <precision>0</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>
-      <meta>
-        <name>dow_fecha_de_entrega</name>
-        <rename>dow_fecha_de_entrega</rename>
-        <type>Integer</type>
-        <length>15</length>
-        <precision>0</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>
-      <meta>
-        <name>dow_fecha_cierre</name>
-        <rename>dow_fecha_cierre</rename>
-        <type>Integer</type>
-        <length>15</length>
-        <precision>0</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>
-      <meta>
-        <name>dow_fecha_subida</name>
-        <rename>dow_fecha_subida</rename>
-        <type>Integer</type>
-        <length>15</length>
-        <precision>0</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>
     </fields>
     <attributes/>
     <cluster_schema/>
@@ -1226,8 +1252,8 @@ if(hora >= 0 &amp;&amp; hora &lt;= 5){
       </output>
     </remotesteps>
     <GUI>
-      <xloc>784</xloc>
-      <yloc>224</yloc>
+      <xloc>1120</xloc>
+      <yloc>352</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1244,31 +1270,156 @@ if(hora >= 0 &amp;&amp; hora &lt;= 5){
     </partitioning>
     <fields>
       <field>
-        <name>fecha_cierre</name>
+        <name>userid</name>
       </field>
       <field>
-        <name>fecha_subida</name>
+        <name>courseid</name>
       </field>
       <field>
-        <name>id_alumno</name>
+        <name>origin</name>
+      </field>
+      <field>
+        <name>ip</name>
+      </field>
+      <field>
+        <name>cantidad_visitas</name>
+      </field>
+      <field>
+        <name>cantidad_acciones</name>
+      </field>
+      <field>
+        <name>id_accion</name>
+      </field>
+      <field>
+        <name>id_fecha</name>
+      </field>
+      <field>
+        <name>id_acceso</name>
+      </field>
+      <field>
+        <name>id_ubicacion</name>
       </field>
       <field>
         <name>id_curso</name>
       </field>
       <field>
-        <name>id_asignatura</name>
-      </field>
-      <field>
-        <name>id_fecha</name>
-        <rename>id_fecha_de_entrega</rename>
-      </field>
-      <field>
-        <name>dow_fecha_cierre</name>
-      </field>
-      <field>
-        <name>dow_fecha_subida</name>
+        <name>id_usuario</name>
       </field>
       <select_unspecified>N</select_unspecified>
+      <remove>
+        <name>origin</name>
+      </remove>
+      <remove>
+        <name>ip</name>
+      </remove>
+      <remove>
+        <name>courseid</name>
+      </remove>
+      <remove>
+        <name>userid</name>
+      </remove>
+      <meta>
+        <name>id_accion</name>
+        <rename>id_accion</rename>
+        <type>Integer</type>
+        <length>10</length>
+        <precision>0</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>id_fecha</name>
+        <rename>id_fecha</rename>
+        <type>Integer</type>
+        <length>10</length>
+        <precision>0</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>id_acceso</name>
+        <rename>id_acceso</rename>
+        <type>Integer</type>
+        <length>10</length>
+        <precision>0</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>id_ubicacion</name>
+        <rename>id_ubicacion</rename>
+        <type>Integer</type>
+        <length>10</length>
+        <precision>0</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>id_curso</name>
+        <rename>id_curso</rename>
+        <type>Integer</type>
+        <length>10</length>
+        <precision>0</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>id_usuario</name>
+        <rename>id_usuario</rename>
+        <type>Integer</type>
+        <length>10</length>
+        <precision>0</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
     </fields>
     <attributes/>
     <cluster_schema/>
@@ -1279,8 +1430,8 @@ if(hora >= 0 &amp;&amp; hora &lt;= 5){
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1376</xloc>
-      <yloc>224</yloc>
+      <xloc>224</xloc>
+      <yloc>352</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1297,28 +1448,50 @@ if(hora >= 0 &amp;&amp; hora &lt;= 5){
     </partitioning>
     <fields>
       <field>
-        <name>fecha_subida</name>
+        <name>component</name>
       </field>
       <field>
-        <name>id_alumno</name>
+        <name>action</name>
       </field>
       <field>
-        <name>id_curso</name>
+        <name>target</name>
       </field>
       <field>
-        <name>id_asignatura</name>
+        <name>userid</name>
       </field>
       <field>
-        <name>id_fecha_de_entrega</name>
+        <name>courseid</name>
       </field>
       <field>
-        <name>id_fecha</name>
-        <rename>id_fecha_cierre</rename>
+        <name>tiempo</name>
       </field>
       <field>
-        <name>dow_fecha_subida</name>
+        <name>origin</name>
+      </field>
+      <field>
+        <name>ip</name>
+      </field>
+      <field>
+        <name>dow</name>
       </field>
       <select_unspecified>N</select_unspecified>
+      <meta>
+        <name>action</name>
+        <rename>action</rename>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
     </fields>
     <attributes/>
     <cluster_schema/>
@@ -1329,14 +1502,14 @@ if(hora >= 0 &amp;&amp; hora &lt;= 5){
       </output>
     </remotesteps>
     <GUI>
-      <xloc>896</xloc>
-      <yloc>336</yloc>
+      <xloc>160</xloc>
+      <yloc>176</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Select values 6</name>
-    <type>SelectValues</type>
+    <name>Split fields</name>
+    <type>FieldSplitter</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -1345,27 +1518,40 @@ if(hora >= 0 &amp;&amp; hora &lt;= 5){
       <method>none</method>
       <schema_name/>
     </partitioning>
+    <splitfield>tiempo</splitfield>
+    <delimiter> </delimiter>
+    <enclosure/>
     <fields>
       <field>
-        <name>id_alumno</name>
+        <name>fecha_sucia</name>
+        <id/>
+        <idrem>N</idrem>
+        <type>String</type>
+        <format/>
+        <group/>
+        <decimal/>
+        <currency/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <nullif/>
+        <ifnull/>
+        <trimtype>none</trimtype>
       </field>
       <field>
-        <name>id_curso</name>
+        <name>hora_sucia</name>
+        <id/>
+        <idrem>N</idrem>
+        <type>String</type>
+        <format/>
+        <group/>
+        <decimal/>
+        <currency/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <nullif/>
+        <ifnull/>
+        <trimtype>none</trimtype>
       </field>
-      <field>
-        <name>id_asignatura</name>
-      </field>
-      <field>
-        <name>id_fecha_de_entrega</name>
-      </field>
-      <field>
-        <name>id_fecha_cierre</name>
-      </field>
-      <field>
-        <name>id_fecha</name>
-        <rename>id_fecha_subida</rename>
-      </field>
-      <select_unspecified>N</select_unspecified>
     </fields>
     <attributes/>
     <cluster_schema/>
@@ -1376,14 +1562,14 @@ if(hora >= 0 &amp;&amp; hora &lt;= 5){
       </output>
     </remotesteps>
     <GUI>
-      <xloc>288</xloc>
-      <yloc>336</yloc>
+      <xloc>688</xloc>
+      <yloc>176</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Select values 7</name>
-    <type>SelectValues</type>
+    <name>Split fields 2</name>
+    <type>FieldSplitter</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -1392,268 +1578,130 @@ if(hora >= 0 &amp;&amp; hora &lt;= 5){
       <method>none</method>
       <schema_name/>
     </partitioning>
+    <splitfield>fecha_sucia</splitfield>
+    <delimiter>/</delimiter>
+    <enclosure/>
     <fields>
       <field>
-        <name>fecha_cierre</name>
-      </field>
-      <field>
-        <name>fecha_subida</name>
-      </field>
-      <field>
-        <name>id_alumno</name>
-      </field>
-      <field>
-        <name>id_curso</name>
-      </field>
-      <field>
-        <name>id_asignatura</name>
-      </field>
-      <field>
-        <name>anio</name>
+        <name>año</name>
+        <id/>
+        <idrem>N</idrem>
+        <type>Integer</type>
+        <format/>
+        <group/>
+        <decimal/>
+        <currency/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <nullif/>
+        <ifnull/>
+        <trimtype>none</trimtype>
       </field>
       <field>
         <name>mes</name>
+        <id/>
+        <idrem>N</idrem>
+        <type>Integer</type>
+        <format/>
+        <group/>
+        <decimal/>
+        <currency/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <nullif/>
+        <ifnull/>
+        <trimtype>none</trimtype>
       </field>
       <field>
         <name>dia</name>
+        <id/>
+        <idrem>N</idrem>
+        <type>Integer</type>
+        <format/>
+        <group/>
+        <decimal/>
+        <currency/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <nullif/>
+        <ifnull/>
+        <trimtype>none</trimtype>
       </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>832</xloc>
+      <yloc>176</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Split fields 3</name>
+    <type>FieldSplitter</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <splitfield>hora_sucia</splitfield>
+    <delimiter>:</delimiter>
+    <enclosure/>
+    <fields>
       <field>
         <name>hora</name>
+        <id/>
+        <idrem>N</idrem>
+        <type>Integer</type>
+        <format/>
+        <group/>
+        <decimal/>
+        <currency/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <nullif/>
+        <ifnull/>
+        <trimtype>none</trimtype>
       </field>
       <field>
         <name>minuto</name>
+        <id/>
+        <idrem>N</idrem>
+        <type>Integer</type>
+        <format/>
+        <group/>
+        <decimal/>
+        <currency/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <nullif/>
+        <ifnull/>
+        <trimtype>none</trimtype>
       </field>
       <field>
-        <name>dow_fecha_de_entrega</name>
-      </field>
-      <field>
-        <name>dow_fecha_cierre</name>
-      </field>
-      <field>
-        <name>dow_fecha_subida</name>
-      </field>
-      <select_unspecified>N</select_unspecified>
-      <meta>
-        <name>fecha_cierre</name>
-        <rename>fecha_cierre</rename>
+        <name>segundo</name>
+        <id/>
+        <idrem>N</idrem>
         <type>String</type>
-        <length>0</length>
-        <precision>-2</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>
-      <meta>
-        <name>fecha_subida</name>
-        <rename>fecha_subida</rename>
-        <type>String</type>
-        <length>0</length>
-        <precision>-2</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>
-      <meta>
-        <name>id_alumno</name>
-        <rename>id_alumno</rename>
-        <type>Integer</type>
-        <length>10</length>
-        <precision>0</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>
-      <meta>
-        <name>id_curso</name>
-        <rename>id_curso</rename>
-        <type>Integer</type>
-        <length>10</length>
-        <precision>0</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>
-      <meta>
-        <name>id_asignatura</name>
-        <rename>id_asignatura</rename>
-        <type>Integer</type>
-        <length>10</length>
-        <precision>0</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>
-      <meta>
-        <name>anio</name>
-        <rename>anio</rename>
-        <type>Integer</type>
-        <length>100</length>
-        <precision>-2</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>
-      <meta>
-        <name>mes</name>
-        <rename>mes</rename>
-        <type>Integer</type>
-        <length>100</length>
-        <precision>-2</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>
-      <meta>
-        <name>dia</name>
-        <rename>dia</rename>
-        <type>Integer</type>
-        <length>100</length>
-        <precision>-2</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>
-      <meta>
-        <name>hora</name>
-        <rename>hora</rename>
-        <type>Integer</type>
-        <length>100</length>
-        <precision>-2</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>
-      <meta>
-        <name>minuto</name>
-        <rename>minuto</rename>
-        <type>Integer</type>
-        <length>100</length>
-        <precision>-2</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>
-      <meta>
-        <name>dow_fecha_de_entrega</name>
-        <rename>dow_fecha_de_entrega</rename>
-        <type>Integer</type>
-        <length>15</length>
-        <precision>0</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>
-      <meta>
-        <name>dow_fecha_cierre</name>
-        <rename>dow_fecha_cierre</rename>
-        <type>Integer</type>
-        <length>15</length>
-        <precision>0</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>
-      <meta>
-        <name>dow_fecha_subida</name>
-        <rename>dow_fecha_subida</rename>
-        <type>Integer</type>
-        <length>15</length>
-        <precision>0</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>
+        <format/>
+        <group/>
+        <decimal/>
+        <currency/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <nullif/>
+        <ifnull/>
+        <trimtype>none</trimtype>
+      </field>
     </fields>
     <attributes/>
     <cluster_schema/>
@@ -1665,13 +1713,13 @@ if(hora >= 0 &amp;&amp; hora &lt;= 5){
     </remotesteps>
     <GUI>
       <xloc>992</xloc>
-      <yloc>224</yloc>
+      <yloc>176</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Select values 8</name>
-    <type>SelectValues</type>
+    <name>Strings cut</name>
+    <type>StringCut</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -1682,246 +1730,11 @@ if(hora >= 0 &amp;&amp; hora &lt;= 5){
     </partitioning>
     <fields>
       <field>
-        <name>fecha_subida</name>
+        <in_stream_name>segundo</in_stream_name>
+        <out_stream_name/>
+        <cut_from>0</cut_from>
+        <cut_to>2</cut_to>
       </field>
-      <field>
-        <name>id_alumno</name>
-      </field>
-      <field>
-        <name>id_curso</name>
-      </field>
-      <field>
-        <name>id_asignatura</name>
-      </field>
-      <field>
-        <name>id_fecha_de_entrega</name>
-      </field>
-      <field>
-        <name>anio</name>
-      </field>
-      <field>
-        <name>mes</name>
-      </field>
-      <field>
-        <name>dia</name>
-      </field>
-      <field>
-        <name>hora</name>
-      </field>
-      <field>
-        <name>minuto</name>
-      </field>
-      <field>
-        <name>dow_fecha_cierre</name>
-      </field>
-      <field>
-        <name>dow_fecha_subida</name>
-      </field>
-      <select_unspecified>N</select_unspecified>
-      <meta>
-        <name>fecha_subida</name>
-        <rename>fecha_subida</rename>
-        <type>String</type>
-        <length>0</length>
-        <precision>-2</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>
-      <meta>
-        <name>id_alumno</name>
-        <rename>id_alumno</rename>
-        <type>Integer</type>
-        <length>10</length>
-        <precision>0</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>
-      <meta>
-        <name>id_curso</name>
-        <rename>id_curso</rename>
-        <type>Integer</type>
-        <length>10</length>
-        <precision>0</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>
-      <meta>
-        <name>id_asignatura</name>
-        <rename>id_asignatura</rename>
-        <type>Integer</type>
-        <length>10</length>
-        <precision>0</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>
-      <meta>
-        <name>id_fecha_de_entrega</name>
-        <rename>id_fecha_de_entrega</rename>
-        <type>Integer</type>
-        <length>10</length>
-        <precision>0</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>
-      <meta>
-        <name>anio</name>
-        <rename>anio</rename>
-        <type>Integer</type>
-        <length>100</length>
-        <precision>-2</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>
-      <meta>
-        <name>mes</name>
-        <rename>mes</rename>
-        <type>Integer</type>
-        <length>100</length>
-        <precision>-2</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>
-      <meta>
-        <name>dia</name>
-        <rename>dia</rename>
-        <type>Integer</type>
-        <length>100</length>
-        <precision>-2</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>
-      <meta>
-        <name>hora</name>
-        <rename>hora</rename>
-        <type>Integer</type>
-        <length>100</length>
-        <precision>-2</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>
-      <meta>
-        <name>minuto</name>
-        <rename>minuto</rename>
-        <type>Integer</type>
-        <length>100</length>
-        <precision>-2</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>
-      <meta>
-        <name>dow_fecha_cierre</name>
-        <rename>dow_fecha_cierre</rename>
-        <type>Integer</type>
-        <length>15</length>
-        <precision>0</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>
-      <meta>
-        <name>dow_fecha_subida</name>
-        <rename>dow_fecha_subida</rename>
-        <type>Integer</type>
-        <length>15</length>
-        <precision>0</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>
     </fields>
     <attributes/>
     <cluster_schema/>
@@ -1932,256 +1745,8 @@ if(hora >= 0 &amp;&amp; hora &lt;= 5){
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1248</xloc>
-      <yloc>336</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Select values 9</name>
-    <type>SelectValues</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <name>id_alumno</name>
-      </field>
-      <field>
-        <name>id_curso</name>
-      </field>
-      <field>
-        <name>id_asignatura</name>
-      </field>
-      <field>
-        <name>id_fecha_de_entrega</name>
-      </field>
-      <field>
-        <name>id_fecha_cierre</name>
-      </field>
-      <field>
-        <name>anio</name>
-      </field>
-      <field>
-        <name>mes</name>
-      </field>
-      <field>
-        <name>dia</name>
-      </field>
-      <field>
-        <name>hora</name>
-      </field>
-      <field>
-        <name>minuto</name>
-      </field>
-      <field>
-        <name>dow_fecha_subida</name>
-      </field>
-      <select_unspecified>N</select_unspecified>
-      <meta>
-        <name>id_alumno</name>
-        <rename>id_alumno</rename>
-        <type>Integer</type>
-        <length>10</length>
-        <precision>0</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>
-      <meta>
-        <name>id_curso</name>
-        <rename>id_curso</rename>
-        <type>Integer</type>
-        <length>10</length>
-        <precision>0</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>
-      <meta>
-        <name>id_asignatura</name>
-        <rename>id_asignatura</rename>
-        <type>Integer</type>
-        <length>10</length>
-        <precision>0</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>
-      <meta>
-        <name>id_fecha_de_entrega</name>
-        <rename>id_fecha_de_entrega</rename>
-        <type>Integer</type>
-        <length>10</length>
-        <precision>0</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>
-      <meta>
-        <name>id_fecha_cierre</name>
-        <rename>id_fecha_cierre</rename>
-        <type>Integer</type>
-        <length>10</length>
-        <precision>0</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>
-      <meta>
-        <name>anio</name>
-        <rename>anio</rename>
-        <type>Integer</type>
-        <length>100</length>
-        <precision>-2</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>
-      <meta>
-        <name>mes</name>
-        <rename>mes</rename>
-        <type>Integer</type>
-        <length>100</length>
-        <precision>-2</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>
-      <meta>
-        <name>dia</name>
-        <rename>dia</rename>
-        <type>Integer</type>
-        <length>100</length>
-        <precision>-2</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>
-      <meta>
-        <name>hora</name>
-        <rename>hora</rename>
-        <type>Integer</type>
-        <length>100</length>
-        <precision>-2</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>
-      <meta>
-        <name>minuto</name>
-        <rename>minuto</rename>
-        <type>Integer</type>
-        <length>100</length>
-        <precision>-2</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>
-      <meta>
-        <name>dow_fecha_subida</name>
-        <rename>dow_fecha_subida</rename>
-        <type>Integer</type>
-        <length>15</length>
-        <precision>0</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>672</xloc>
-      <yloc>336</yloc>
+      <xloc>1120</xloc>
+      <yloc>176</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2197,13 +1762,8 @@ if(hora >= 0 &amp;&amp; hora &lt;= 5){
       <schema_name/>
     </partitioning>
     <connection>conn_u</connection>
-    <sql>select mas.userid as alumno,ma.course as curso,ma.id as asignatura,
-from_unixtime(ma.duedate) as fecha_de_entrega, DAYOFWEEK(from_unixtime(ma.duedate)) as dow_fecha_de_entrega,
-from_unixtime(ma.cutoffdate) as fecha_cierre, DAYOFWEEK(from_unixtime(ma.cutoffdate )) as dow_fecha_cierre,
-from_unixtime(mas.timemodified) as fecha_subida, DAYOFWEEK(from_unixtime(mas.timemodified )) as dow_fecha_subida
-from mdl_assign_submission mas 
-join mdl_assign ma on mas.`assignment` = ma.id</sql>
-    <limit>0</limit>
+    <sql>select component,action,target,userid,courseid,from_unixtime(timecreated)as tiempo,DAYOFWEEK(from_unixtime(timecreated)) as dow,origin,ip from mdl_logstore_standard_log;</sql>
+    <limit>500000</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
     <variables_active>N</variables_active>
@@ -2211,82 +1771,59 @@ join mdl_assign ma on mas.`assignment` = ma.id</sql>
     <cached_row_meta_active>N</cached_row_meta_active>
     <row-meta>
       <value-meta>
-        <type>Integer</type>
+        <type>String</type>
         <storagetype>normal</storagetype>
-        <name>alumno</name>
-        <length>15</length>
-        <precision>0</precision>
-        <origin>Table input</origin>
-        <comments>alumno</comments>
-        <conversion_Mask>####0;-####0</conversion_Mask>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>es_BO</date_format_locale>
-        <date_format_timezone>America/La_Paz</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>Integer</type>
-        <storagetype>normal</storagetype>
-        <name>curso</name>
-        <length>15</length>
-        <precision>0</precision>
-        <origin>Table input</origin>
-        <comments>curso</comments>
-        <conversion_Mask>####0;-####0</conversion_Mask>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>es_BO</date_format_locale>
-        <date_format_timezone>America/La_Paz</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>Integer</type>
-        <storagetype>normal</storagetype>
-        <name>asignatura</name>
-        <length>15</length>
-        <precision>0</precision>
-        <origin>Table input</origin>
-        <comments>asignatura</comments>
-        <conversion_Mask>####0;-####0</conversion_Mask>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>es_BO</date_format_locale>
-        <date_format_timezone>America/La_Paz</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>Timestamp</type>
-        <storagetype>normal</storagetype>
-        <name>fecha_de_entrega</name>
-        <length>0</length>
+        <name>component</name>
+        <length>100</length>
         <precision>-1</precision>
         <origin>Table input</origin>
-        <comments>fecha_de_entrega</comments>
+        <comments>component</comments>
+        <conversion_Mask/>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>es_BO</date_format_locale>
+        <date_format_timezone>America/La_Paz</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>String</type>
+        <storagetype>normal</storagetype>
+        <name>action</name>
+        <length>100</length>
+        <precision>-1</precision>
+        <origin>Table input</origin>
+        <comments>action</comments>
+        <conversion_Mask/>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>es_BO</date_format_locale>
+        <date_format_timezone>America/La_Paz</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>String</type>
+        <storagetype>normal</storagetype>
+        <name>target</name>
+        <length>100</length>
+        <precision>-1</precision>
+        <origin>Table input</origin>
+        <comments>target</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
         <grouping_symbol>.</grouping_symbol>
@@ -2305,11 +1842,34 @@ join mdl_assign ma on mas.`assignment` = ma.id</sql>
       <value-meta>
         <type>Integer</type>
         <storagetype>normal</storagetype>
-        <name>dow_fecha_de_entrega</name>
+        <name>userid</name>
         <length>15</length>
         <precision>0</precision>
         <origin>Table input</origin>
-        <comments>dow_fecha_de_entrega</comments>
+        <comments>userid</comments>
+        <conversion_Mask>####0;-####0</conversion_Mask>
+        <decimal_symbol>,</decimal_symbol>
+        <grouping_symbol>.</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>es_BO</date_format_locale>
+        <date_format_timezone>America/La_Paz</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>Integer</type>
+        <storagetype>normal</storagetype>
+        <name>courseid</name>
+        <length>15</length>
+        <precision>0</precision>
+        <origin>Table input</origin>
+        <comments>courseid</comments>
         <conversion_Mask>####0;-####0</conversion_Mask>
         <decimal_symbol>,</decimal_symbol>
         <grouping_symbol>.</grouping_symbol>
@@ -2328,11 +1888,11 @@ join mdl_assign ma on mas.`assignment` = ma.id</sql>
       <value-meta>
         <type>Timestamp</type>
         <storagetype>normal</storagetype>
-        <name>fecha_cierre</name>
+        <name>tiempo</name>
         <length>0</length>
         <precision>-1</precision>
         <origin>Table input</origin>
-        <comments>fecha_cierre</comments>
+        <comments>tiempo</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
         <grouping_symbol>.</grouping_symbol>
@@ -2351,11 +1911,11 @@ join mdl_assign ma on mas.`assignment` = ma.id</sql>
       <value-meta>
         <type>Integer</type>
         <storagetype>normal</storagetype>
-        <name>dow_fecha_cierre</name>
+        <name>dow</name>
         <length>15</length>
         <precision>0</precision>
         <origin>Table input</origin>
-        <comments>dow_fecha_cierre</comments>
+        <comments>dow</comments>
         <conversion_Mask>####0;-####0</conversion_Mask>
         <decimal_symbol>,</decimal_symbol>
         <grouping_symbol>.</grouping_symbol>
@@ -2372,13 +1932,13 @@ join mdl_assign ma on mas.`assignment` = ma.id</sql>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
       <value-meta>
-        <type>Timestamp</type>
+        <type>String</type>
         <storagetype>normal</storagetype>
-        <name>fecha_subida</name>
-        <length>0</length>
+        <name>origin</name>
+        <length>10</length>
         <precision>-1</precision>
         <origin>Table input</origin>
-        <comments>fecha_subida</comments>
+        <comments>origin</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
         <grouping_symbol>.</grouping_symbol>
@@ -2395,14 +1955,14 @@ join mdl_assign ma on mas.`assignment` = ma.id</sql>
         <lenient_string_to_number>N</lenient_string_to_number>
       </value-meta>
       <value-meta>
-        <type>Integer</type>
+        <type>String</type>
         <storagetype>normal</storagetype>
-        <name>dow_fecha_subida</name>
-        <length>15</length>
-        <precision>0</precision>
+        <name>ip</name>
+        <length>45</length>
+        <precision>-1</precision>
         <origin>Table input</origin>
-        <comments>dow_fecha_subida</comments>
-        <conversion_Mask>####0;-####0</conversion_Mask>
+        <comments>ip</comments>
+        <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
         <grouping_symbol>.</grouping_symbol>
         <currency_symbol/>
@@ -2427,8 +1987,8 @@ join mdl_assign ma on mas.`assignment` = ma.id</sql>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>80</xloc>
-      <yloc>224</yloc>
+      <xloc>48</xloc>
+      <yloc>176</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2445,8 +2005,8 @@ join mdl_assign ma on mas.`assignment` = ma.id</sql>
     </partitioning>
     <connection>conn_dw</connection>
     <schema>public</schema>
-    <table>hecho_entrega_asignatura</table>
-    <commit>1000000</commit>
+    <table>tbl_hecho</table>
+    <commit>10000000</commit>
     <truncate>N</truncate>
     <ignore_errors>N</ignore_errors>
     <use_batch>Y</use_batch>
@@ -2462,32 +2022,36 @@ join mdl_assign ma on mas.`assignment` = ma.id</sql>
     <return_field/>
     <fields>
       <field>
-        <column_name>id_alumno</column_name>
-        <stream_name>id_alumno</stream_name>
+        <column_name>id_dim_user</column_name>
+        <stream_name>id_usuario</stream_name>
       </field>
       <field>
-        <column_name>id_curso</column_name>
+        <column_name>id_dim_curso</column_name>
         <stream_name>id_curso</stream_name>
       </field>
       <field>
-        <column_name>id_asignatura</column_name>
-        <stream_name>id_asignatura</stream_name>
+        <column_name>id_dim_accion</column_name>
+        <stream_name>id_accion</stream_name>
       </field>
       <field>
-        <column_name>id_fecha_de_entrega</column_name>
-        <stream_name>id_fecha_de_entrega</stream_name>
+        <column_name>id_dim_tiempo</column_name>
+        <stream_name>id_fecha</stream_name>
       </field>
       <field>
-        <column_name>id_fecha_cierre</column_name>
-        <stream_name>id_fecha_cierre</stream_name>
+        <column_name>id_dim_acceso</column_name>
+        <stream_name>id_acceso</stream_name>
       </field>
       <field>
-        <column_name>id_fecha_subida</column_name>
-        <stream_name>id_fecha_subida</stream_name>
+        <column_name>id_dim_ubicacion</column_name>
+        <stream_name>id_ubicacion</stream_name>
       </field>
       <field>
-        <column_name>hecho_entrega</column_name>
-        <stream_name>hecho_entrega</stream_name>
+        <column_name>cantidad_accesos</column_name>
+        <stream_name>cantidad_visitas</stream_name>
+      </field>
+      <field>
+        <column_name>cantidad_acciones</column_name>
+        <stream_name>cantidad_acciones</stream_name>
       </field>
     </fields>
     <attributes/>
@@ -2499,184 +2063,13 @@ join mdl_assign ma on mas.`assignment` = ma.id</sql>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>80</xloc>
-      <yloc>336</yloc>
+      <xloc>48</xloc>
+      <yloc>352</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>fecha cut</name>
-    <type>StringCut</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <in_stream_name>fecha_de_entrega</in_stream_name>
-        <out_stream_name>anio</out_stream_name>
-        <cut_from>0</cut_from>
-        <cut_to>4</cut_to>
-      </field>
-      <field>
-        <in_stream_name>fecha_de_entrega</in_stream_name>
-        <out_stream_name>mes</out_stream_name>
-        <cut_from>5</cut_from>
-        <cut_to>7</cut_to>
-      </field>
-      <field>
-        <in_stream_name>fecha_de_entrega</in_stream_name>
-        <out_stream_name>dia</out_stream_name>
-        <cut_from>8</cut_from>
-        <cut_to>10</cut_to>
-      </field>
-      <field>
-        <in_stream_name>fecha_de_entrega</in_stream_name>
-        <out_stream_name>hora</out_stream_name>
-        <cut_from>11</cut_from>
-        <cut_to>13</cut_to>
-      </field>
-      <field>
-        <in_stream_name>fecha_de_entrega</in_stream_name>
-        <out_stream_name>minuto</out_stream_name>
-        <cut_from>14</cut_from>
-        <cut_to>16</cut_to>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>896</xloc>
-      <yloc>224</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>fecha cut 2</name>
-    <type>StringCut</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <in_stream_name>fecha_cierre</in_stream_name>
-        <out_stream_name>anio</out_stream_name>
-        <cut_from>0</cut_from>
-        <cut_to>4</cut_to>
-      </field>
-      <field>
-        <in_stream_name>fecha_cierre</in_stream_name>
-        <out_stream_name>mes</out_stream_name>
-        <cut_from>5</cut_from>
-        <cut_to>7</cut_to>
-      </field>
-      <field>
-        <in_stream_name>fecha_cierre</in_stream_name>
-        <out_stream_name>dia</out_stream_name>
-        <cut_from>8</cut_from>
-        <cut_to>10</cut_to>
-      </field>
-      <field>
-        <in_stream_name>fecha_cierre</in_stream_name>
-        <out_stream_name>hora</out_stream_name>
-        <cut_from>11</cut_from>
-        <cut_to>13</cut_to>
-      </field>
-      <field>
-        <in_stream_name>fecha_cierre</in_stream_name>
-        <out_stream_name>minuto</out_stream_name>
-        <cut_from>14</cut_from>
-        <cut_to>16</cut_to>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>1376</xloc>
-      <yloc>336</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>fecha cut 3</name>
-    <type>StringCut</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <in_stream_name>fecha_subida</in_stream_name>
-        <out_stream_name>anio</out_stream_name>
-        <cut_from>0</cut_from>
-        <cut_to>4</cut_to>
-      </field>
-      <field>
-        <in_stream_name>fecha_subida</in_stream_name>
-        <out_stream_name>mes</out_stream_name>
-        <cut_from>5</cut_from>
-        <cut_to>7</cut_to>
-      </field>
-      <field>
-        <in_stream_name>fecha_subida</in_stream_name>
-        <out_stream_name>dia</out_stream_name>
-        <cut_from>8</cut_from>
-        <cut_to>10</cut_to>
-      </field>
-      <field>
-        <in_stream_name>fecha_subida</in_stream_name>
-        <out_stream_name>hora</out_stream_name>
-        <cut_from>11</cut_from>
-        <cut_to>13</cut_to>
-      </field>
-      <field>
-        <in_stream_name>fecha_subida</in_stream_name>
-        <out_stream_name>minuto</out_stream_name>
-        <cut_from>14</cut_from>
-        <cut_to>16</cut_to>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>784</xloc>
-      <yloc>336</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>look_up_alumno</name>
+    <name>look-up-acceso</name>
     <type>CombinationLookup</type>
     <description/>
     <distribute>Y</distribute>
@@ -2687,7 +2080,7 @@ join mdl_assign ma on mas.`assignment` = ma.id</sql>
       <schema_name/>
     </partitioning>
     <schema>public</schema>
-    <table>dim_usuario</table>
+    <table>dim_acceso</table>
     <connection>conn_dw</connection>
     <commit>1000000</commit>
     <cache_size>9999</cache_size>
@@ -2697,11 +2090,11 @@ join mdl_assign ma on mas.`assignment` = ma.id</sql>
     <crcfield>hashcode</crcfield>
     <fields>
       <key>
-        <name>alumno</name>
-        <lookup>id_usuario_database</lookup>
+        <name>origin</name>
+        <lookup>origin</lookup>
       </key>
       <return>
-        <name>id_usuario</name>
+        <name>id_acceso</name>
         <creation_method>tablemax</creation_method>
         <use_autoinc>N</use_autoinc>
       </return>
@@ -2717,13 +2110,13 @@ join mdl_assign ma on mas.`assignment` = ma.id</sql>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>192</xloc>
-      <yloc>224</yloc>
+      <xloc>960</xloc>
+      <yloc>352</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>look_up_asignatura</name>
+    <name>look-up-accion</name>
     <type>CombinationLookup</type>
     <description/>
     <distribute>Y</distribute>
@@ -2734,9 +2127,9 @@ join mdl_assign ma on mas.`assignment` = ma.id</sql>
       <schema_name/>
     </partitioning>
     <schema>public</schema>
-    <table>dim_asignatura</table>
+    <table>dim_accion</table>
     <connection>conn_dw</connection>
-    <commit>100000</commit>
+    <commit>10000000</commit>
     <cache_size>9999</cache_size>
     <replace>N</replace>
     <preloadCache>N</preloadCache>
@@ -2744,11 +2137,19 @@ join mdl_assign ma on mas.`assignment` = ma.id</sql>
     <crcfield>hashcode</crcfield>
     <fields>
       <key>
-        <name>asignatura</name>
-        <lookup>id_asignatura_database</lookup>
+        <name>target</name>
+        <lookup>target</lookup>
+      </key>
+      <key>
+        <name>action</name>
+        <lookup>action</lookup>
+      </key>
+      <key>
+        <name>component</name>
+        <lookup>component</lookup>
       </key>
       <return>
-        <name>id_asignatura</name>
+        <name>id_accion</name>
         <creation_method>tablemax</creation_method>
         <use_autoinc>N</use_autoinc>
       </return>
@@ -2764,13 +2165,13 @@ join mdl_assign ma on mas.`assignment` = ma.id</sql>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>672</xloc>
-      <yloc>224</yloc>
+      <xloc>416</xloc>
+      <yloc>176</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>look_up_curso</name>
+    <name>look-up-curso</name>
     <type>CombinationLookup</type>
     <description/>
     <distribute>Y</distribute>
@@ -2783,7 +2184,7 @@ join mdl_assign ma on mas.`assignment` = ma.id</sql>
     <schema>public</schema>
     <table>dim_curso</table>
     <connection>conn_dw</connection>
-    <commit>100000</commit>
+    <commit>1000000</commit>
     <cache_size>9999</cache_size>
     <replace>N</replace>
     <preloadCache>N</preloadCache>
@@ -2791,7 +2192,7 @@ join mdl_assign ma on mas.`assignment` = ma.id</sql>
     <crcfield>hashcode</crcfield>
     <fields>
       <key>
-        <name>curso</name>
+        <name>courseid</name>
         <lookup>id_curso_database</lookup>
       </key>
       <return>
@@ -2811,13 +2212,13 @@ join mdl_assign ma on mas.`assignment` = ma.id</sql>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>400</xloc>
-      <yloc>224</yloc>
+      <xloc>592</xloc>
+      <yloc>352</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>look_up_fecha_cierre</name>
+    <name>look-up-ubicacion</name>
     <type>CombinationLookup</type>
     <description/>
     <distribute>Y</distribute>
@@ -2828,9 +2229,9 @@ join mdl_assign ma on mas.`assignment` = ma.id</sql>
       <schema_name/>
     </partitioning>
     <schema>public</schema>
-    <table>dim_fecha</table>
+    <table>dim_ubicacion</table>
     <connection>conn_dw</connection>
-    <commit>10000</commit>
+    <commit>100000000</commit>
     <cache_size>9999</cache_size>
     <replace>N</replace>
     <preloadCache>N</preloadCache>
@@ -2838,35 +2239,11 @@ join mdl_assign ma on mas.`assignment` = ma.id</sql>
     <crcfield>hashcode</crcfield>
     <fields>
       <key>
-        <name>anio</name>
-        <lookup>anio</lookup>
-      </key>
-      <key>
-        <name>mes</name>
-        <lookup>mes</lookup>
-      </key>
-      <key>
-        <name>dia</name>
-        <lookup>dia</lookup>
-      </key>
-      <key>
-        <name>hora</name>
-        <lookup>hora</lookup>
-      </key>
-      <key>
-        <name>minuto</name>
-        <lookup>minuto</lookup>
-      </key>
-      <key>
-        <name>dia_semana</name>
-        <lookup>dia_semana</lookup>
-      </key>
-      <key>
-        <name>horario</name>
-        <lookup>horario</lookup>
+        <name>ip</name>
+        <lookup>ip</lookup>
       </key>
       <return>
-        <name>id_fecha</name>
+        <name>id_ubicacion</name>
         <creation_method>tablemax</creation_method>
         <use_autoinc>N</use_autoinc>
       </return>
@@ -2882,13 +2259,13 @@ join mdl_assign ma on mas.`assignment` = ma.id</sql>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>992</xloc>
-      <yloc>336</yloc>
+      <xloc>768</xloc>
+      <yloc>352</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>look_up_fecha_de_entrega</name>
+    <name>look-up-usuario</name>
     <type>CombinationLookup</type>
     <description/>
     <distribute>Y</distribute>
@@ -2899,9 +2276,9 @@ join mdl_assign ma on mas.`assignment` = ma.id</sql>
       <schema_name/>
     </partitioning>
     <schema>public</schema>
-    <table>dim_fecha</table>
+    <table>dim_usuario</table>
     <connection>conn_dw</connection>
-    <commit>100000</commit>
+    <commit>10000000</commit>
     <cache_size>9999</cache_size>
     <replace>N</replace>
     <preloadCache>N</preloadCache>
@@ -2909,106 +2286,11 @@ join mdl_assign ma on mas.`assignment` = ma.id</sql>
     <crcfield>hashcode</crcfield>
     <fields>
       <key>
-        <name>anio</name>
-        <lookup>anio</lookup>
-      </key>
-      <key>
-        <name>mes</name>
-        <lookup>mes</lookup>
-      </key>
-      <key>
-        <name>dia</name>
-        <lookup>dia</lookup>
-      </key>
-      <key>
-        <name>hora</name>
-        <lookup>hora</lookup>
-      </key>
-      <key>
-        <name>minuto</name>
-        <lookup>minuto</lookup>
-      </key>
-      <key>
-        <name>dia_semana</name>
-        <lookup>dia_semana</lookup>
-      </key>
-      <key>
-        <name>horario</name>
-        <lookup>horario</lookup>
+        <name>userid</name>
+        <lookup>id_usuario_database</lookup>
       </key>
       <return>
-        <name>id_fecha</name>
-        <creation_method>tablemax</creation_method>
-        <use_autoinc>N</use_autoinc>
-      </return>
-    </fields>
-    <sequence/>
-    <last_update_field/>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>1248</xloc>
-      <yloc>224</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>look_up_fecha_subida</name>
-    <type>CombinationLookup</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <schema>public</schema>
-    <table>dim_fecha</table>
-    <connection>conn_dw</connection>
-    <commit>1000000</commit>
-    <cache_size>9999</cache_size>
-    <replace>N</replace>
-    <preloadCache>N</preloadCache>
-    <crc>N</crc>
-    <crcfield>hashcode</crcfield>
-    <fields>
-      <key>
-        <name>anio</name>
-        <lookup>anio</lookup>
-      </key>
-      <key>
-        <name>mes</name>
-        <lookup>mes</lookup>
-      </key>
-      <key>
-        <name>dia</name>
-        <lookup>dia</lookup>
-      </key>
-      <key>
-        <name>hora</name>
-        <lookup>hora</lookup>
-      </key>
-      <key>
-        <name>minuto</name>
-        <lookup>minuto</lookup>
-      </key>
-      <key>
-        <name>dia_semana</name>
-        <lookup>dia_semana</lookup>
-      </key>
-      <key>
-        <name>horario</name>
-        <lookup>horario</lookup>
-      </key>
-      <return>
-        <name>id_fecha</name>
+        <name>id_usuario</name>
         <creation_method>tablemax</creation_method>
         <use_autoinc>N</use_autoinc>
       </return>
@@ -3025,7 +2307,7 @@ join mdl_assign ma on mas.`assignment` = ma.id</sql>
     </remotesteps>
     <GUI>
       <xloc>400</xloc>
-      <yloc>336</yloc>
+      <yloc>352</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

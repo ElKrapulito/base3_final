@@ -19,7 +19,8 @@ CREATE TABLE dim_fecha(
     dia INT,
     mes INT,
     anio INT,
-    dia_semana TEXT
+    dia_semana TEXT,
+    horario TEXT
 );
 
 -- mdl_course
@@ -40,6 +41,27 @@ CREATE TABLE dim_asignatura(
     grade INT
 );
 
+create table dim_acceso(
+    id_acceso serial primary key,
+    origin varchar
+);
+
+create table dim_ubicacion(
+    id_ubicacion serial primary key,
+    ip varchar,
+    ip_A int,
+    ip_B int,
+    ip_C int,
+    ip_D int
+);
+
+create table dim_accion(
+    id_accion serial primary key,
+    target varchar,
+    action varchar,
+    component varchar
+);
+
 -- mdl_assign_submission
 -- mdl_assign_grades
 CREATE TABLE hecho_entrega_asignatura(
@@ -57,4 +79,22 @@ CREATE TABLE hecho_entrega_asignatura(
     FOREIGN KEY (id_fecha_de_entrega) REFERENCES dim_fecha(id_fecha),
     FOREIGN KEY (id_fecha_cierre) REFERENCES dim_fecha(id_fecha),
     FOREIGN KEY (id_fecha_subida) REFERENCES dim_fecha(id_fecha)
+);
+
+create table tbl_hecho(
+    id_hecho serial primary key,
+    id_dim_tiempo int,
+    id_dim_curso int,
+    id_dim_user int,
+    id_dim_acceso int,
+    id_dim_ubicacion int,
+    id_dim_accion int,
+    cantidad_accesos int,
+    cantidad_acciones int,
+    foreign key (id_dim_tiempo) references dim_fecha(id_fecha),
+    foreign key (id_dim_curso) references dim_curso(id_curso);
+    foreign key (id_dim_user) references dim_usuario(id_usuario);
+    foreign key (id_dim_acceso) references dim_acceso(id_acceso);
+    foreign key (id_dim_ubicacion) references dim_ubicacion(id_ubicacion);
+    foreign key (id_dim_accion) references dim_accion(id_accion);
 );
