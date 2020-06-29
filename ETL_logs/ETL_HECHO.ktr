@@ -682,6 +682,10 @@
         <name>dia_semana</name>
         <lookup>dia_semana</lookup>
       </key>
+      <key>
+        <name>horario</name>
+        <lookup>horario</lookup>
+      </key>
       <return>
         <name>id_fecha</name>
         <creation_method>tablemax</creation_method>
@@ -798,15 +802,14 @@ if(dow == 1){
 	dia_semana="Sabado";
 }
 var horario = "";
-if(hora >= 0 &amp;&amp; hora &lt;= 5){
-	horario = "Madrugada"
-} else if(hora > 5 &amp;&amp; hora &lt;= 11){
+if(hora >= 5 &amp;&amp; hora &lt;= 11){
 	horario = "Mañana";
-} else if(hora > 11 &amp;&amp; hora &lt;= 18){
+} else if(hora > 11 &amp;&amp; hora &lt;= 19){
 	horario = "Tarde";
-} else if (hora > 18 &amp;&amp; hora &lt;= 23){
+} else if ((hora > 19 &amp;&amp; hora &lt;= 23) || (hora >= 0 &amp;&amp; hora &lt;= 4)){
 	horario = "Noche";
-}</jsScript_script>
+}
+</jsScript_script>
       </jsScript>
     </jsScripts>
     <fields>
@@ -1763,7 +1766,7 @@ if(hora >= 0 &amp;&amp; hora &lt;= 5){
     </partitioning>
     <connection>conn_u</connection>
     <sql>select component,action,target,userid,courseid,from_unixtime(timecreated)as tiempo,DAYOFWEEK(from_unixtime(timecreated)) as dow,origin,ip from mdl_logstore_standard_log;</sql>
-    <limit>500000</limit>
+    <limit>100000</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
     <variables_active>N</variables_active>

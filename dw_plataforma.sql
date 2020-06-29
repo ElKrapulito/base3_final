@@ -92,9 +92,9 @@ create table tbl_hecho(
     cantidad_accesos int,
     cantidad_acciones int,
     foreign key (id_dim_tiempo) references dim_fecha(id_fecha),
-    foreign key (id_dim_curso) references dim_curso(id_curso);
-    foreign key (id_dim_user) references dim_usuario(id_usuario);
-    foreign key (id_dim_acceso) references dim_acceso(id_acceso);
-    foreign key (id_dim_ubicacion) references dim_ubicacion(id_ubicacion);
-    foreign key (id_dim_accion) references dim_accion(id_accion);
+    foreign key (id_dim_curso) references dim_curso(id_curso),
+    foreign key (id_dim_user) references dim_usuario(id_usuario),
+    foreign key (id_dim_acceso) references dim_acceso(id_acceso),
+    foreign key (id_dim_ubicacion) references dim_ubicacion(id_ubicacion),
+    foreign key (id_dim_accion) references dim_accion(id_accion)
 );
