@@ -547,18 +547,8 @@
   </connection>
   <order>
     <hop>
-      <from>Select</from>
-      <to>Split fields</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>Table input</from>
       <to>Select</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Split fields</from>
-      <to>Modified JavaScript value</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -567,98 +557,26 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
+      <from>Select</from>
+      <to>Filter rows</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Filter rows</from>
+      <to>Split fields</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Split fields</from>
+      <to>Modified JavaScript value</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
       <from>Select 2</from>
-      <to>Insert / update</to>
+      <to>Table output</to>
       <enabled>Y</enabled>
     </hop>
   </order>
-  <step>
-    <name>Insert / update</name>
-    <type>InsertUpdate</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>conn_dw</connection>
-    <commit>100000</commit>
-    <update_bypassed>Y</update_bypassed>
-    <lookup>
-      <schema>public</schema>
-      <table>dim_ubicacion</table>
-      <key>
-        <name>ip</name>
-        <field>ip</field>
-        <condition>=</condition>
-        <name2/>
-      </key>
-      <key>
-        <name>ip_a</name>
-        <field>ip_a</field>
-        <condition>=</condition>
-        <name2/>
-      </key>
-      <key>
-        <name>ip_b</name>
-        <field>ip_b</field>
-        <condition>=</condition>
-        <name2/>
-      </key>
-      <key>
-        <name>ip_c</name>
-        <field>ip_c</field>
-        <condition>=</condition>
-        <name2/>
-      </key>
-      <key>
-        <name>ip_d</name>
-        <field>ip_d</field>
-        <condition>=</condition>
-        <name2/>
-      </key>
-      <value>
-        <name>ip</name>
-        <rename>ip</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>ip_a</name>
-        <rename>ip_a</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>ip_b</name>
-        <rename>ip_b</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>ip_c</name>
-        <rename>ip_c</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>ip_d</name>
-        <rename>ip_d</rename>
-        <update>Y</update>
-      </value>
-    </lookup>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>768</xloc>
-      <yloc>272</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
   <step>
     <name>Modified JavaScript value</name>
     <type>ScriptValueMod</type>
@@ -756,6 +674,7 @@ if(ip.substring(4,5)==":"){
     <fields>
       <field>
         <name>ip</name>
+        <rename/>
       </field>
       <field>
         <name>ip</name>
@@ -772,7 +691,7 @@ if(ip.substring(4,5)==":"){
       </output>
     </remotesteps>
     <GUI>
-      <xloc>288</xloc>
+      <xloc>192</xloc>
       <yloc>272</yloc>
       <draw>Y</draw>
     </GUI>
@@ -791,18 +710,23 @@ if(ip.substring(4,5)==":"){
     <fields>
       <field>
         <name>ip</name>
+        <rename/>
       </field>
       <field>
         <name>ip_a</name>
+        <rename/>
       </field>
       <field>
         <name>ip_b</name>
+        <rename/>
       </field>
       <field>
         <name>ip_c</name>
+        <rename/>
       </field>
       <field>
         <name>ip_d</name>
+        <rename/>
       </field>
       <select_unspecified>N</select_unspecified>
       <meta>
@@ -1007,8 +931,9 @@ if(ip.substring(4,5)==":"){
       <schema_name/>
     </partitioning>
     <connection>conn_u</connection>
-    <sql>select ip from mdl_logstore_standard_log;</sql>
-    <limit>100000</limit>
+    <sql>select distinct ip from mdl_logstore_standard_log order by ip;
+</sql>
+    <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
     <variables_active>N</variables_active>
@@ -1048,7 +973,118 @@ if(ip.substring(4,5)==":"){
       </output>
     </remotesteps>
     <GUI>
-      <xloc>176</xloc>
+      <xloc>80</xloc>
+      <yloc>272</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Filter rows</name>
+    <type>FilterRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <send_true_to/>
+    <send_false_to/>
+    <compare>
+      <condition>
+        <negated>N</negated>
+        <conditions>
+          <condition>
+            <negated>N</negated>
+            <leftvalue>ip_sucia</leftvalue>
+            <function>IS NOT NULL</function>
+            <rightvalue/>
+          </condition>
+          <condition>
+            <negated>N</negated>
+            <operator>AND</operator>
+            <leftvalue>ip</leftvalue>
+            <function>IS NOT NULL</function>
+            <rightvalue/>
+          </condition>
+        </conditions>
+      </condition>
+    </compare>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>304</xloc>
+      <yloc>272</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Table output</name>
+    <type>TableOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>conn_dw</connection>
+    <schema>public</schema>
+    <table>dim_ubicacion</table>
+    <commit>10000000</commit>
+    <truncate>N</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>Y</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field/>
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field/>
+    <fields>
+      <field>
+        <column_name>ip</column_name>
+        <stream_name>ip</stream_name>
+      </field>
+      <field>
+        <column_name>ip_a</column_name>
+        <stream_name>ip_a</stream_name>
+      </field>
+      <field>
+        <column_name>ip_b</column_name>
+        <stream_name>ip_b</stream_name>
+      </field>
+      <field>
+        <column_name>ip_c</column_name>
+        <stream_name>ip_c</stream_name>
+      </field>
+      <field>
+        <column_name>ip_d</column_name>
+        <stream_name>ip_d</stream_name>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>768</xloc>
       <yloc>272</yloc>
       <draw>Y</draw>
     </GUI>

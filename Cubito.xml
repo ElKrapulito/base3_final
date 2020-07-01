@@ -44,29 +44,15 @@
         </Level>
       </Hierarchy>
     </Dimension>
-    <Dimension type="TimeDimension" visible="true" foreignKey="id_fecha_de_entrega" highCardinality="false" name="Fecha de entrega">
-      <Hierarchy name="Fecha de entrega" visible="true" hasAll="true" primaryKey="id_fecha">
+    <Dimension type="TimeDimension" visible="true" foreignKey="id_fecha_de_entrega" highCardinality="false" name="Fecha-entrega">
+      <Hierarchy name="Fecha-entrega" visible="true" hasAll="true" primaryKey="id_fecha">
         <Table name="dim_fecha" schema="public">
         </Table>
         <Level name="A&#241;o" visible="true" column="anio" type="String" uniqueMembers="false" levelType="TimeYears" hideMemberIf="Never">
         </Level>
         <Level name="Mes" visible="true" column="mes" type="String" uniqueMembers="false" levelType="TimeMonths" hideMemberIf="Never">
         </Level>
-        <Level name="Dia" visible="true" column="dia" type="String" uniqueMembers="false" levelType="TimeDays" hideMemberIf="Never">
-        </Level>
-        <Level name="Hora" visible="true" column="hora" type="String" uniqueMembers="false" levelType="TimeHours" hideMemberIf="Never">
-        </Level>
-        <Level name="Minuto" visible="true" column="minuto" type="String" uniqueMembers="false" levelType="TimeMinutes" hideMemberIf="Never">
-        </Level>
-      </Hierarchy>
-      <Hierarchy name="Dia de la Semana" visible="true" hasAll="true" primaryKey="id_fecha">
-        <Table name="dim_fecha" schema="public">
-        </Table>
-        <Level name="A&#241;o" visible="true" column="anio" type="String" uniqueMembers="false" levelType="TimeYears" hideMemberIf="Never">
-        </Level>
-        <Level name="Mes" visible="true" column="mes" type="String" uniqueMembers="false" levelType="TimeMonths" hideMemberIf="Never">
-        </Level>
-        <Level name="Dia de la semana" visible="true" column="dia_semana" type="String" uniqueMembers="false" levelType="TimeUndefined" hideMemberIf="Never">
+        <Level name="Dia-semana" visible="true" column="dia_semana" type="String" uniqueMembers="false" levelType="TimeUndefined" hideMemberIf="Never">
         </Level>
         <Level name="Dia" visible="true" column="dia" type="String" uniqueMembers="false" levelType="TimeDays" hideMemberIf="Never">
         </Level>
@@ -76,29 +62,15 @@
         </Level>
       </Hierarchy>
     </Dimension>
-    <Dimension type="TimeDimension" visible="true" foreignKey="id_fecha_subida" highCardinality="false" name="Fecha subida">
-      <Hierarchy name="Fecha subida" visible="true" hasAll="true" primaryKey="id_fecha">
+    <Dimension type="TimeDimension" visible="true" foreignKey="id_fecha_subida" highCardinality="false" name="Fecha-subida">
+      <Hierarchy name="Fecha-subida" visible="true" hasAll="true" primaryKey="id_fecha">
         <Table name="dim_fecha" schema="public">
         </Table>
         <Level name="A&#241;o" visible="true" column="anio" type="String" uniqueMembers="false" levelType="TimeYears" hideMemberIf="Never">
         </Level>
         <Level name="Mes" visible="true" column="mes" type="String" uniqueMembers="false" levelType="TimeMonths" hideMemberIf="Never">
         </Level>
-        <Level name="Dia" visible="true" column="dia" type="String" uniqueMembers="false" levelType="TimeDays" hideMemberIf="Never">
-        </Level>
-        <Level name="Hora" visible="true" column="hora" type="String" uniqueMembers="false" levelType="TimeHours" hideMemberIf="Never">
-        </Level>
-        <Level name="Minuto" visible="true" column="minuto" type="String" uniqueMembers="false" levelType="TimeMinutes" hideMemberIf="Never">
-        </Level>
-      </Hierarchy>
-      <Hierarchy name="Dia de la semana" visible="true" hasAll="true" primaryKey="id_fecha">
-        <Table name="dim_fecha" schema="public">
-        </Table>
-        <Level name="A&#241;o" visible="true" column="anio" type="String" uniqueMembers="false" levelType="TimeYears" hideMemberIf="Never">
-        </Level>
-        <Level name="Mes" visible="true" column="mes" type="String" uniqueMembers="false" levelType="TimeMonths" hideMemberIf="Never">
-        </Level>
-        <Level name="Dia de la semana" visible="true" column="dia_semana" type="String" uniqueMembers="false" levelType="TimeUndefined" hideMemberIf="Never">
+        <Level name="Dia-semana" visible="true" column="dia_semana" type="String" uniqueMembers="false" levelType="TimeUndefined" hideMemberIf="Never">
         </Level>
         <Level name="Dia" visible="true" column="dia" type="String" uniqueMembers="false" levelType="TimeDays" hideMemberIf="Never">
         </Level>
@@ -108,29 +80,15 @@
         </Level>
       </Hierarchy>
     </Dimension>
-    <Dimension type="TimeDimension" visible="true" foreignKey="id_fecha_cierre" highCardinality="false" name="Fecha cierre">
-      <Hierarchy name="Fecha cierre" visible="true" hasAll="true" primaryKey="id_fecha">
+    <Dimension type="TimeDimension" visible="true" foreignKey="id_fecha_cierre" highCardinality="false" name="Fecha-cierre">
+      <Hierarchy name="Fecha-cierre" visible="true" hasAll="true" primaryKey="id_fecha">
         <Table name="dim_fecha" schema="public">
         </Table>
         <Level name="A&#241;o" visible="true" column="anio" type="String" uniqueMembers="false" levelType="TimeYears" hideMemberIf="Never">
         </Level>
         <Level name="Mes" visible="true" column="mes" type="String" uniqueMembers="false" levelType="TimeMonths" hideMemberIf="Never">
         </Level>
-        <Level name="Dia" visible="true" column="dia" type="String" uniqueMembers="false" levelType="TimeDays" hideMemberIf="Never">
-        </Level>
-        <Level name="Hora" visible="true" column="hora" type="String" uniqueMembers="false" levelType="TimeHours" hideMemberIf="Never">
-        </Level>
-        <Level name="Minuto" visible="true" column="minuto" type="String" uniqueMembers="false" levelType="TimeMinutes" hideMemberIf="Never">
-        </Level>
-      </Hierarchy>
-      <Hierarchy name="Dia de la semana" visible="true" hasAll="true" primaryKey="id_fecha">
-        <Table name="dim_fecha" schema="public">
-        </Table>
-        <Level name="A&#241;o" visible="true" column="anio" type="String" uniqueMembers="false" levelType="TimeYears" hideMemberIf="Never">
-        </Level>
-        <Level name="Mes" visible="true" column="mes" type="String" uniqueMembers="false" levelType="TimeMonths" hideMemberIf="Never">
-        </Level>
-        <Level name="Dia de la semana" visible="true" column="dia_semana" type="String" uniqueMembers="false" levelType="TimeUndefined" hideMemberIf="Never">
+        <Level name="Dia-semana" visible="true" column="dia_semana" type="String" uniqueMembers="false" levelType="TimeUndefined" hideMemberIf="Never">
         </Level>
         <Level name="Dia" visible="true" column="dia" type="String" uniqueMembers="false" levelType="TimeDays" hideMemberIf="Never">
         </Level>
