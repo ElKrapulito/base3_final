@@ -133,7 +133,7 @@
       </Hierarchy>
     </Dimension>
     <Dimension type="StandardDimension" visible="true" foreignKey="id_dim_accion" highCardinality="false" name="Acciones">
-      <Hierarchy name="Accion" visible="true" hasAll="true">
+      <Hierarchy name="Accion" visible="true" hasAll="true" primaryKey="id_accion">
         <Table name="dim_accion" schema="public">
         </Table>
         <Level name="Action" visible="true" column="id_accion" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
