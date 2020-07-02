@@ -176,8 +176,6 @@
         </Level>
         <Level name="Dia de la semana" visible="true" column="dia_semana" type="String" uniqueMembers="false" levelType="TimeUndefined" hideMemberIf="Never">
         </Level>
-        <Level name="Dia" visible="true" column="dia" type="String" uniqueMembers="false" levelType="TimeDays" hideMemberIf="Never">
-        </Level>
         <Level name="Horario" visible="true" column="horario" type="String" uniqueMembers="false" levelType="TimeUndefined" hideMemberIf="Never">
         </Level>
         <Level name="Hora" visible="true" column="hora" type="String" uniqueMembers="false" levelType="TimeHours" hideMemberIf="Never">
